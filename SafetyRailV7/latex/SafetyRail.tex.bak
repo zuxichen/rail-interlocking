@@ -1,0 +1,91 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\MultiTitle{SafetyRail}
+\MultiHeader{CONTEXT}{SR1\_Path\_ctx}
+\CONTEXT{SR1\_Path\_ctx}{}{}
+\SETS{
+	\Set{PATH}{}
+	\Set{RouteId}{}
+}
+\CONSTANTS{
+	\Constant{PathConflict}{}
+	\Constant{Route2Path}{}
+}
+\AXIOMS{
+	\Axiom{assocMult\_Path\_conflic}{false}{$PathConflict \in{} PATH \rel{} PATH$}{}
+	\Axiom{axm1}{false}{$\forall{}p\qdot{}p\in{}PATH \limp{} (PathConflict \binter{} id = \emptyset{}) $}{}
+	\Axiom{axm2}{false}{$\forall{}p\qdot{}p\in{}PATH \limp{} (PathConflict = PathConflict\converse{}) $}{}
+	\Axiom{axm3}{false}{$\forall{}p\qdot{}p\in{}PATH \limp{} (finite(PATH))$}{}
+	\Axiom{assocRoute2Path}{false}{$Route2Path \in{} RouteId \tfun{} PATH$}{}
+}
+\END
+\MultiHeader{MACHINE}{SR\_M1}
+\MACHINE{SR\_M1}{}{SR1\_Path\_ctx}{}
+\VARIABLES{
+	\Variable{RouteId\_Res}{}
+	\Variable{RouteId\_Occ}{}
+}
+\INVARIANTS{
+	\Invariant{typeof\_RouteId\_Res}{false}{$RouteId\_Res \subseteq{} RouteId$}{}
+	\Invariant{typeof\_RouteId\_Occ}{false}{$RouteId\_Occ \subseteq{} RouteId$}{}
+	\Invariant{safety\_Req}{false}{$\forall{}p1,p2\qdot{}(p1\in{}RouteId\_Occ \land{} p2\in{}RouteId\_Occ)\limp{} (PathConflict[Route2Path[\{p1\}]]\binter{} Route2Path[\{p2\}]=\emptyset{})$}{}
+}
+\EVENTS{
+\INITIALISATION{false}{}{
+	\ACTIONS{false}{
+		\Action{act1}{$RouteId\_Res  \bcmeq{}  \emptyset{}$}{true}{}
+		\Action{act2}{$RouteId\_Occ \bcmeq{} \emptyset{}$}{true}{}
+	}
+}
+\EVT{Route\_Reserve}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{p}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$p \notin{} (RouteId\_Res \bunion{} RouteId\_Occ)$}{true}{}
+		\Guard{grd2}{false}{$PathConflict[Route2Path[\{p\}]]\binter{} Route2Path[RouteId\_Res \bunion{} RouteId\_Occ]=\emptyset{}$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$RouteId\_Res \bcmeq{} RouteId\_Res \bunion{} \{p\}$}{true}{}
+	}
+}
+\EVT{Route\_Cancel}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{p}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$p \in{} RouteId\_Res$}{true}{}
+		\Guard{grd2}{false}{$p \notin{} RouteId\_Occ$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$RouteId\_Res \bcmeq{} RouteId\_Res\setminus{}\{p\}$}{true}{}
+	}
+}
+\EVT{Train\_Enter}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{p}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$p \in{} RouteId\_Res$}{true}{}
+		\Guard{grd2}{true}{$PathConflict[Route2Path[\{p\}]]\binter{} Route2Path[RouteId\_Occ]=\emptyset{}$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$RouteId\_Res \bcmeq{} RouteId\_Res\setminus{}\{p\}$}{true}{}
+		\Action{act2}{$RouteId\_Occ \bcmeq{} RouteId\_Occ \bunion{} \{p\}$}{true}{}
+	}
+}
+\EVT{Train\_Leave}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{p}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$p\in{} RouteId\_Occ$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$RouteId\_Occ\bcmeq{} RouteId\_Occ\setminus{}\{p\}$}{true}{}
+	}
+}
+}
+\END
+\end{document}

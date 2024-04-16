@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="PATH" org.eventb.core.type="ℙ(PATH)"/>
+        <org.eventb.core.poIdentifier name="ROUTE" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Route2InitPath" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="PathConflict" org.eventb.core.type="ℙ(PATH×PATH)"/>
+        <org.eventb.core.poIdentifier name="NullPath" org.eventb.core.type="PATH"/>
+        <org.eventb.core.poIdentifier name="PathSub" org.eventb.core.type="ℙ(PATH×PATH)"/>
+        <org.eventb.core.poPredicate name="Route2InitPati" org.eventb.core.predicate="PathConflict∈PATH ↔ PATH" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#)"/>
+        <org.eventb.core.poPredicate name="Route2InitPatj" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒PathConflict∩(id ⦂ ℙ(PATH×PATH))=(∅ ⦂ ℙ(PATH×PATH))" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#*"/>
+        <org.eventb.core.poPredicate name="Route2InitPatk" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒PathConflict=PathConflict∼" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#+"/>
+        <org.eventb.core.poPredicate name="Route2InitPatl" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒finite(PATH)" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#,"/>
+        <org.eventb.core.poPredicate name="Route2InitPatm" org.eventb.core.predicate="Route2InitPath∈ROUTE → PATH" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="Route2InitPatn" org.eventb.core.predicate="PathSub∈PATH ↔ PATH" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#1"/>
+        <org.eventb.core.poPredicate name="Route2InitPato" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∀p1⦂PATH,p2⦂PATH·p1∈PathSub[{p2}]∧p∉PathConflict[{p2}]⇒p∉PathConflict[{p1}])" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#2"/>
+        <org.eventb.core.poPredicate name="Route2InitPatp" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒NullPath∈PathSub[{p}]" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#3"/>
+        <org.eventb.core.poPredicate name="Route2InitPatq" org.eventb.core.predicate="NullPath∈PATH" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#5"/>
+        <org.eventb.core.poIdentifier name="BLOCK" org.eventb.core.type="ℙ(BLOCK)"/>
+        <org.eventb.core.poIdentifier name="Path2Block" org.eventb.core.type="ℙ(PATH×BLOCK)"/>
+        <org.eventb.core.poIdentifier name="PathReduce" org.eventb.core.type="ℙ(PATH×ℙ(BLOCK×PATH))"/>
+        <org.eventb.core.poIdentifier name="PathIncrease" org.eventb.core.type="ℙ(PATH×ℙ(BLOCK×PATH))"/>
+        <org.eventb.core.poPredicate name="Route2InitPatr" org.eventb.core.predicate="Path2Block∈PATH ↔ BLOCK" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#)"/>
+        <org.eventb.core.poPredicate name="Route2InitPats" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∀q⦂PATH·q∉PathConflict[{p}]⇔Path2Block[{p}]∩Path2Block[{q}]=(∅ ⦂ ℙ(BLOCK)))" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#+"/>
+        <org.eventb.core.poPredicate name="Route2InitPatt" org.eventb.core.predicate="PathReduce∈PATH ∖ {NullPath} → (BLOCK → PATH)" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#-"/>
+        <org.eventb.core.poPredicate name="Route2InitPatu" org.eventb.core.predicate="∀p⦂PATH·p∈PATH ∖ {NullPath}⇒(∃b⦂BLOCK·b∈BLOCK⇒PathReduce(p)(b)∈PathSub[{p}])" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#."/>
+        <org.eventb.core.poPredicate name="Route2InitPatv" org.eventb.core.predicate="∀p⦂PATH·p∈PATH ∖ {NullPath}⇒(∃b⦂BLOCK·b∈BLOCK⇒Path2Block[{PathReduce(p)(b)}]=Path2Block[{p}] ∖ {b})" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#0"/>
+        <org.eventb.core.poPredicate name="Route2InitPatw" org.eventb.core.predicate="Path2Block[{NullPath}]=(∅ ⦂ ℙ(BLOCK))" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="Route2InitPatx" org.eventb.core.predicate="PathIncrease∈PATH → (BLOCK → PATH)" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#1"/>
+        <org.eventb.core.poPredicate name="Route2InitPaty" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∃b⦂BLOCK·b∈BLOCK⇒p∈PathSub[{PathIncrease(p)(b)}])" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#3"/>
+        <org.eventb.core.poPredicate name="Route2InitPatz" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∃b⦂BLOCK·b∈BLOCK⇒Path2Block[{p}]∪{b}=Path2Block[{PathIncrease(p)(b)}])" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#4"/>
+        <org.eventb.core.poIdentifier name="MODE" org.eventb.core.type="ℙ(MODE)"/>
+        <org.eventb.core.poIdentifier name="POS" org.eventb.core.type="ℙ(POS)"/>
+        <org.eventb.core.poIdentifier name="Lock" org.eventb.core.type="MODE"/>
+        <org.eventb.core.poIdentifier name="POINT" org.eventb.core.type="ℙ(BLOCK)"/>
+        <org.eventb.core.poIdentifier name="Route2Point2Pos" org.eventb.core.type="ℙ(ℙ(ROUTE×BLOCK)×POS)"/>
+        <org.eventb.core.poIdentifier name="Unlock" org.eventb.core.type="MODE"/>
+        <org.eventb.core.poIdentifier name="Point2InitPos" org.eventb.core.type="ℙ(BLOCK×POS)"/>
+        <org.eventb.core.poPredicate name="Route2Point2Pot" org.eventb.core.predicate="POINT⊆BLOCK" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#)"/>
+        <org.eventb.core.poPredicate name="Route2Point2Pou" org.eventb.core.predicate="Route2Point2Pos∈(ROUTE ↔ POINT) → POS" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#+"/>
+        <org.eventb.core.poPredicate name="Route2Point2Pov" org.eventb.core.predicate="Point2InitPos∈POINT → POS" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="Route2Point2Pow" org.eventb.core.predicate="∀pos⦂POS·pos∈POS⇒finite(POS)" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#-"/>
+        <org.eventb.core.poPredicate name="Route2Point2Pox" org.eventb.core.predicate="partition(MODE,{Lock},{Unlock})" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#3"/>
+        <org.eventb.core.poIdentifier name="SIGNAL" org.eventb.core.type="ℙ(SIGNAL)"/>
+        <org.eventb.core.poIdentifier name="Red" org.eventb.core.type="SIGNAL"/>
+        <org.eventb.core.poIdentifier name="Green" org.eventb.core.type="SIGNAL"/>
+        <org.eventb.core.poPredicate name="Route2Point2Poy" org.eventb.core.predicate="partition(SIGNAL,{Red},{Green})" org.eventb.core.source="/SafetyRailV7/SR3_Signal.buc|org.eventb.core.contextFile#SR3_Signal|org.eventb.core.axiom#+"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="Route_Occ" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Block2Route" org.eventb.core.type="ℙ(BLOCK×ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Point2Mode" org.eventb.core.type="ℙ(BLOCK×MODE)"/>
+        <org.eventb.core.poIdentifier name="Route_Req" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Route2Signal" org.eventb.core.type="ℙ(ROUTE×SIGNAL)"/>
+        <org.eventb.core.poIdentifier name="Route2Path" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="Route_Cel" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Route2OccPath" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="Point2Pos" org.eventb.core.type="ℙ(BLOCK×POS)"/>
+        <org.eventb.core.poPredicate name="Route2OccPati" org.eventb.core.predicate="Route_Req⊆ROUTE" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.invariant#,"/>
+        <org.eventb.core.poPredicate name="Route2OccPatj" org.eventb.core.predicate="Route_Cel⊆ROUTE" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poPredicate name="Route2OccPatk" org.eventb.core.predicate="Route_Occ⊆ROUTE" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.invariant#-"/>
+        <org.eventb.core.poPredicate name="Route2OccPatl" org.eventb.core.predicate="Route2Path∈ROUTE ⇸ PATH" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.invariant#5"/>
+        <org.eventb.core.poPredicate name="Route2OccPatm" org.eventb.core.predicate="∀r1⦂ROUTE,r2⦂ROUTE·r1≠r2∧r1∈dom(Route2Path)∧r2∈dom(Route2Path)⇒PathConflict∼[Route2Path[{r1}]]∩Route2Path[{r2}]=(∅ ⦂ ℙ(PATH))" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.invariant#3"/>
+        <org.eventb.core.poPredicate name="Route2OccPatn" org.eventb.core.predicate="∀r⦂ROUTE·r∈Route_Occ⇒Route2Path[{r}]≠(∅ ⦂ ℙ(PATH))" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.invariant#="/>
+        <org.eventb.core.poPredicate name="Route2OccPato" org.eventb.core.predicate="Block2Route∈BLOCK ⇸ ROUTE" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.invariant#0"/>
+        <org.eventb.core.poPredicate name="Route2OccPatp" org.eventb.core.predicate="Route2OccPath∈ROUTE ⇸ PATH" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.invariant#?"/>
+        <org.eventb.core.poPredicate name="Route2OccPatq" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∀q⦂PATH·q∉PathConflict[{p}]⇔Path2Block[{p}]∩Path2Block[{q}]=(∅ ⦂ ℙ(BLOCK)))" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.invariant#8"/>
+        <org.eventb.core.poPredicate name="Route2OccPatr" org.eventb.core.predicate="Point2Pos∈POINT → POS" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.invariant#;"/>
+        <org.eventb.core.poPredicate name="Route2OccPats" org.eventb.core.predicate="Point2Mode∈POINT → MODE" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.invariant#?"/>
+        <org.eventb.core.poPredicate name="Route2OccPatt" org.eventb.core.predicate="∀r⦂ROUTE,po⦂BLOCK·po∈Block2Route∼[{r}]∩POINT∧r∈ran(Block2Route)⇒Point2Pos(po)=Route2Point2Pos({r ↦ po})" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poPredicate name="Route2OccPatu" org.eventb.core.predicate="∀r⦂ROUTE,po⦂BLOCK·po∈Block2Route∼[{r}]∩POINT∧r∈ran(Block2Route)⇒Point2Mode(po)=Lock" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.invariant#F"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="inv2/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Invariant" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#HYPSR3_Signam"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r⦂ROUTE·(r∈dom(Route2OccPath)⇒Route2OccPath∈ROUTE ⇸ PATH)∧(r∈dom(Route2OccPath)∧Route2OccPath(r)≠NullPath⇒r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL)" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#HYPSR3_Signam"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv1/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPati"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="ROUTE × {Red}∈ROUTE → SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#INITIALISATION\/inv1\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYV" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#HYPSR3_Signam|org.eventb.core.poPredicate#PRD0"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="INITIALISATION/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  establishment" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPati"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r⦂ROUTE·r∈dom(∅ ⦂ ℙ(ROUTE×PATH))∧(∅ ⦂ ℙ(ROUTE×PATH))(r)≠NullPath⇒(ROUTE × {Red})(r)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#'"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#INITIALISATION\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYV" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPati" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#CTXHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="Block2Route'" org.eventb.core.type="ℙ(BLOCK×ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Point2Pos'" org.eventb.core.type="ℙ(BLOCK×POS)"/>
+        <org.eventb.core.poIdentifier name="Route_Cel'" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Route2Signal'" org.eventb.core.type="ℙ(ROUTE×SIGNAL)"/>
+        <org.eventb.core.poIdentifier name="Route_Occ'" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Point2Mode'" org.eventb.core.type="ℙ(BLOCK×MODE)"/>
+        <org.eventb.core.poIdentifier name="Route2OccPath'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="Route2Path'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="Route_Req'" org.eventb.core.type="ℙ(ROUTE)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPati" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPati" org.eventb.core.poStamp="0"/>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatj" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route_Req'" org.eventb.core.type="ℙ(ROUTE)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatj" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatj" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∉Route_Req" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#7|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatk" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route_Cel'" org.eventb.core.type="ℙ(ROUTE)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatk" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatk" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Req" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#:|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatl" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route2Path'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatl" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatl" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Req" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#\/|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∉Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#\/|org.eventb.core.guard#,"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∉dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#\/|org.eventb.core.guard#-"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="PathConflict[Route2InitPath[{r}]]∩ran(Route2Path)=(∅ ⦂ ℙ(PATH))" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#\/|org.eventb.core.guard#*"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="Block2Route∼[{r}]=Path2Block[{Route2InitPath(r)}]" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#4|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒Point2Pos(po)=Route2Point2Pos({r ↦ po})" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#,|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒Point2Mode(po)=Lock" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#,|org.eventb.core.guard#)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatm" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route_Cel'" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Route2Path'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="Route_Req'" org.eventb.core.type="ℙ(ROUTE)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatm" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatm" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Req" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#&gt;|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∈Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#&gt;|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∉Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#&gt;|org.eventb.core.guard#)"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="Block2Route∼[{r}]=(∅ ⦂ ℙ(BLOCK))" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#5|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatn" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route2Path'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="Route_Req'" org.eventb.core.type="ℙ(ROUTE)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatn" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatn" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#0|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="Route2Path(r)=NullPath" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#0|org.eventb.core.guard#)"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∉Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#0|org.eventb.core.guard#,"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="Block2Route∼[{r}]=(∅ ⦂ ℙ(BLOCK))" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#:|org.eventb.core.guard#*"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Train_Enter/grd4/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatot"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#9|org.eventb.core.guard#("/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#9|org.eventb.core.guard#("/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatot"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Train_Enter/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPato"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r0⦂ROUTE·r0∈dom(Route2OccPath∪{r ↦ NullPath})∧(Route2OccPath∪{r ↦ NullPath})(r0)≠NullPath⇒Route2Signal(r0)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#1"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#9"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Train_Enter\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYV" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPato" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route_Occ'" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Route2OccPath'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPatot" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPato" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#1|org.eventb.core.guard#-"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∉Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#1|org.eventb.core.guard#."/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∉dom(Route2OccPath)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#6|org.eventb.core.guard#)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPato" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatot" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="Route2Signal(r)=Green" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#9|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Train_Head_Move/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPatp"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r0⦂ROUTE·r0∈dom(Route2OccPath{r ↦ PathIncrease(op)(b)})∧(Route2OccPath{r ↦ PathIncrease(op)(b)})(r0)≠NullPath⇒Route2Signal(r0)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#B"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#:"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Train_Head_Move\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYV" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatp" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="b" org.eventb.core.type="BLOCK"/>
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="op" org.eventb.core.type="PATH"/>
+        <org.eventb.core.poIdentifier name="Route2OccPath'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatp" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatp" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#;|org.eventb.core.guard#+"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∈dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#;|org.eventb.core.guard#6"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="b∈Path2Block[{Route2Path(r)}]" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#;|org.eventb.core.guard#."/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="r∈dom(Route2OccPath)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#;|org.eventb.core.guard#7"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="op=Route2OccPath(r)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#;|org.eventb.core.guard#3"/>
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="b∉Path2Block[{op}]" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#;|org.eventb.core.guard#\/"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Train_Rear_Move/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPatq"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r0⦂ROUTE·r0∈dom(Route2OccPath{r ↦ PathReduce(op)(b)})∧(Route2OccPath{r ↦ PathReduce(op)(b)})(r0)≠NullPath⇒Route2Signal(r0)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#C"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#;"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Train_Rear_Move\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYV" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatq" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="b" org.eventb.core.type="BLOCK"/>
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="sp" org.eventb.core.type="PATH"/>
+        <org.eventb.core.poIdentifier name="p" org.eventb.core.type="PATH"/>
+        <org.eventb.core.poIdentifier name="op" org.eventb.core.type="PATH"/>
+        <org.eventb.core.poIdentifier name="Route2OccPath'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="Route2Path'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatq" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatq" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#?|org.eventb.core.guard#)"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∈dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#?|org.eventb.core.guard#*"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="p=Route2Path(r)" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#?|org.eventb.core.guard#+"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="p≠NullPath" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#?|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="sp∈PathSub[{p}]" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#?|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="r∈dom(Route2OccPath)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#1|org.eventb.core.guard#internal8"/>
+        <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="op=Route2OccPath(r)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#1|org.eventb.core.guard#2"/>
+        <org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="b∈Path2Block[{op}]∩Path2Block[{p}]" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#1|org.eventb.core.guard#."/>
+        <org.eventb.core.poPredicate name="PRD8" org.eventb.core.predicate="op≠NullPath" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#1|org.eventb.core.guard#internal9"/>
+        <org.eventb.core.poPredicate name="PRD9" org.eventb.core.predicate="sp=PathReduce(p)(b)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#1|org.eventb.core.guard#internalB"/>
+        <org.eventb.core.poPredicate name="PRD10" org.eventb.core.predicate="PathReduce(op)(b)=NullPath⇒card(Path2Block[{p}])≠1" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#1|org.eventb.core.guard#internal@"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Train_Leave/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPatr"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r0⦂ROUTE·r0∈dom({r} ⩤ Route2OccPath)∧({r} ⩤ Route2OccPath)(r0)≠NullPath⇒Route2Signal(r0)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="ABSTRACT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#2"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="CONCRETE" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#&gt;"/>
+        <org.eventb.core.poSource name="SEQHYT" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Train_Leave\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYV" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatr" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route_Occ'" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Route2OccPath'" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatr" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatr" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#2|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∈dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#2|org.eventb.core.guard#,"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="Route2Path(r)=NullPath" org.eventb.core.source="/SafetyRailV7/SR_M0.bum|org.eventb.core.machineFile#SR_M0|org.eventb.core.event#2|org.eventb.core.guard#."/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="Route2OccPath(r)=NullPath" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#7|org.eventb.core.guard#*"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPats" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="Block2Route'" org.eventb.core.type="ℙ(BLOCK×ROUTE)"/>
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="p" org.eventb.core.type="PATH"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPats" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPats" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Req" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#*|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∉Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#*|org.eventb.core.guard#*"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∉dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#*|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="p=Route2InitPath(r)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#*|org.eventb.core.guard#,"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="Path2Block[{p}]∩dom(Block2Route)=(∅ ⦂ ℙ(BLOCK))" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#*|org.eventb.core.guard#)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Block_Cancel/grd5/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPattt"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#6|org.eventb.core.guard#("/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#6|org.eventb.core.guard#("/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPattt"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatt" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="Block2Route'" org.eventb.core.type="ℙ(BLOCK×ROUTE)"/>
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPattt" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatt" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#9|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∈ran(Block2Route)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#9|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∉dom(Route2OccPath)" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#9|org.eventb.core.guard#)"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="∀po⦂BLOCK·po∈Block2Route∼[{r}]∩POINT⇒Point2Mode(po)=Unlock" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#\/|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatt" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPattt" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="Route2Signal(r)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#6|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Block_Release/grd6/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatut"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#=|org.eventb.core.guard#("/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#=|org.eventb.core.guard#("/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatut"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatu" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="b" org.eventb.core.type="BLOCK"/>
+        <org.eventb.core.poIdentifier name="Block2Route'" org.eventb.core.type="ℙ(BLOCK×ROUTE)"/>
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPatut" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatu" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#A|org.eventb.core.guard#internal5"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="b∈Block2Route∼[{r}]" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#A|org.eventb.core.guard#internal7"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="b∉Path2Block[{Route2OccPath(r)}]" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#A|org.eventb.core.guard#internal8"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="b∉Path2Block[{Route2Path(r)}]" org.eventb.core.source="/SafetyRailV7/SR_M1.bum|org.eventb.core.machineFile#SR_M1|org.eventb.core.event#A|org.eventb.core.guard#internal:"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="b∈POINT⇒Point2Mode(b)=Unlock" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#0|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatu" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatut" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="Route2Signal(r)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#=|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatv" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Point2Pos'" org.eventb.core.type="ℙ(BLOCK×POS)"/>
+        <org.eventb.core.poIdentifier name="po" org.eventb.core.type="BLOCK"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatv" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatv" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∉Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#4|org.eventb.core.guard#,"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∉dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#4|org.eventb.core.guard#*"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="po∈Block2Route∼[{r}]∩POINT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#4|org.eventb.core.guard#0"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="Point2Mode(po)=Unlock" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#4|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="Point2Pos(po)≠Route2Point2Pos({r ↦ po})" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#4|org.eventb.core.guard#-"/>
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="∀p⦂PATH·p∈ran(Route2OccPath)⇒po∉Path2Block[{p}]" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#4|org.eventb.core.guard#1"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatw" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Point2Mode'" org.eventb.core.type="ℙ(BLOCK×MODE)"/>
+        <org.eventb.core.poIdentifier name="po" org.eventb.core.type="BLOCK"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatw" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatw" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∉Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#=|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∉dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#=|org.eventb.core.guard#)"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="po∈Block2Route∼[{r}]∩POINT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#=|org.eventb.core.guard#0"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="Point2Mode(po)=Unlock" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#=|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="Point2Pos(po)=Route2Point2Pos({r ↦ po})" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#=|org.eventb.core.guard#-"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Point_Unlock_Cancel/grd5/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatx*"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#B|org.eventb.core.guard#("/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#B|org.eventb.core.guard#("/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatx*"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatx" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Point2Mode'" org.eventb.core.type="ℙ(BLOCK×MODE)"/>
+        <org.eventb.core.poIdentifier name="po" org.eventb.core.type="BLOCK"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPatx*" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatx" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#@|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="po∈Block2Route∼[{r}]∩POINT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#@|org.eventb.core.guard#1"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="Point2Mode(po)=Lock" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#@|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="r∉Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#@|org.eventb.core.guard#0"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatx" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatx*" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="Route2Signal(r)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#B|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Point_Unlock_Release/grd6/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPaty*"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#C|org.eventb.core.guard#("/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#C|org.eventb.core.guard#("/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPaty*"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPaty" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Point2Mode'" org.eventb.core.type="ℙ(BLOCK×MODE)"/>
+        <org.eventb.core.poIdentifier name="po" org.eventb.core.type="BLOCK"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPaty*" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPaty" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈Route_Occ" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#D|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="po∈POINT" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#D|org.eventb.core.guard#6"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="po∈Block2Route∼[{r}]" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#D|org.eventb.core.guard#3"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="po∉Path2Block[{Route2Path(r)}]" org.eventb.core.source="/SafetyRailV7/SR_M2.bum|org.eventb.core.machineFile#SR_M2|org.eventb.core.event#D|org.eventb.core.guard#5"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPaty" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPaty*" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="Route2Signal(r)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#C|org.eventb.core.guard#("/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Signal_Green_Reserve/grd4/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz)"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#2"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#2"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz)"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Green_Reserve/grd5/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz*"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2InitPath)∧Route2InitPath∈ROUTE ⇸ PATH" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#,"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#,"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz*"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Green_Reserve/grd6/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz+"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒po∈dom(Point2Pos)∧Point2Pos∈BLOCK ⇸ POS∧{r ↦ po}∈dom(Route2Point2Pos)∧Route2Point2Pos∈ℙ(ROUTE × BLOCK) ⇸ POS" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#-"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#-"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz+"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Green_Reserve/grd7/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz,"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒po∈dom(Point2Mode)∧Point2Mode∈BLOCK ⇸ MODE" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz,"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Green_Reserve/inv1/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPatz"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="{r ↦ Green}Route2Signal∈ROUTE → SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Signal_Green_Reserve\/inv1\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#HYPSR3_Signam|org.eventb.core.poPredicate#PRD0"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Green_Reserve/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPatz"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r0⦂ROUTE·r0∈dom(Route2OccPath)∧Route2OccPath(r0)≠NullPath⇒({r ↦ Green}Route2Signal)(r0)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Signal_Green_Reserve\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPatz" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route2Signal'" org.eventb.core.type="ℙ(ROUTE×SIGNAL)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPatz)" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPatz" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#'"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="r∈Route_Req" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#)"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∉Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#+"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPatz*" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz)" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="Route2Signal(r)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#2"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPatz+" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz*" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="Block2Route∼[{r}]=Path2Block[{Route2InitPath(r)}]" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#,"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPatz," org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz+" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒Point2Pos(po)=Route2Point2Pos({r ↦ po})" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#-"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPatz" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPatz," org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒Point2Mode(po)=Lock" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poPredicate name="PRD7" org.eventb.core.predicate="r∉dom(Route2OccPath)" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#G|org.eventb.core.guard#1"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Signal_Red_Cancel/grd2/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{'"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#*"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#*"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{'"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Red_Cancel/grd5/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{*"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒po∈dom(Point2Mode)∧Point2Mode∈BLOCK ⇸ MODE" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#\/"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{*"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Red_Cancel/grd6/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{+"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒po∈dom(Point2Pos)∧Point2Pos∈BLOCK ⇸ POS∧{r ↦ po}∈dom(Route2Point2Pos)∧Route2Point2Pos∈ℙ(ROUTE × BLOCK) ⇸ POS" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#."/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#."/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{+"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Red_Cancel/grd7/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{,"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2InitPath)∧Route2InitPath∈ROUTE ⇸ PATH" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#-"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#-"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{,"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Red_Cancel/inv1/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPat{"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="{r ↦ Red}Route2Signal∈ROUTE → SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Signal_Red_Cancel\/inv1\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#HYPSR3_Signam|org.eventb.core.poPredicate#PRD0"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Red_Cancel/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPat{"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r0⦂ROUTE·r0∈dom(Route2OccPath)∧Route2OccPath(r0)≠NullPath⇒({r ↦ Red}Route2Signal)(r0)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Signal_Red_Cancel\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPat{" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route2Signal'" org.eventb.core.type="ℙ(ROUTE×SIGNAL)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPat{'" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPat{" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#,"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPat{*" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{'" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="Route2Signal(r)=Green" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#*"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∈Route_Cel" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="r∉dom(Route2OccPath)" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#+"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPat{+" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{*" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒Point2Mode(po)=Lock" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#\/"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPat{," org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{+" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD5" org.eventb.core.predicate="∀po⦂BLOCK·po∈Path2Block[Route2InitPath[{r}]]∩POINT⇒Point2Pos(po)=Route2Point2Pos({r ↦ po})" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#."/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPat{" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat{," org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD6" org.eventb.core.predicate="Block2Route∼[{r}]=Path2Block[{Route2InitPath(r)}]" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#F|org.eventb.core.guard#-"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poSequent name="Signal_Red_Occupied/grd3/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat\|'"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2Signal)∧Route2Signal∈ROUTE ⇸ SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I|org.eventb.core.guard#("/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I|org.eventb.core.guard#("/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat\|'"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Red_Occupied/grd5/WD" org.eventb.core.accurate="true" org.eventb.core.poDesc="Well-definedness of Guard" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat\|)"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="r∈dom(Route2OccPath)∧Route2OccPath∈ROUTE ⇸ PATH" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I|org.eventb.core.guard#+"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I|org.eventb.core.guard#+"/>
+        <org.eventb.core.poSelHint name="SEQHYS" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat\|)"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Red_Occupied/inv1/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPat\|"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="Route2Signal{r ↦ Red}∈ROUTE → SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Signal_Red_Occupied\/inv1\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#HYPSR3_Signam|org.eventb.core.poPredicate#PRD0"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poSequent name="Signal_Red_Occupied/inv2/INV" org.eventb.core.accurate="true" org.eventb.core.poDesc="Invariant  preservation" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicateSet name="SEQHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTALLHYPRoute2OccPat\|"/>
+        <org.eventb.core.poPredicate name="SEQHYQ" org.eventb.core.predicate="∀r0⦂ROUTE·r0∈dom(Route2OccPath)∧Route2OccPath(r0)≠NullPath⇒(Route2Signal{r ↦ Red})(r0)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSource name="SEQHYR" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I"/>
+        <org.eventb.core.poSource name="SEQHYS" org.eventb.core.poRole="DEFAULT" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+        <org.eventb.core.poSelHint name="SEQHYT" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poSelHintSnd="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poSequent#Signal_Red_Occupied\/inv2\/INV|org.eventb.core.poPredicateSet#SEQHYP"/>
+        <org.eventb.core.poSelHint name="SEQHYU" org.eventb.core.poSelHintFst="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP|org.eventb.core.poPredicate#PRD1"/>
+    </org.eventb.core.poSequent>
+    <org.eventb.core.poPredicateSet name="EVTIDENTRoute2OccPat|" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ALLHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="r" org.eventb.core.type="ROUTE"/>
+        <org.eventb.core.poIdentifier name="Route2Signal'" org.eventb.core.type="ℙ(ROUTE×SIGNAL)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPat|'" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTIDENTRoute2OccPat\|" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="r∈dom(Route2Path)" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I|org.eventb.core.guard#'"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTHYPRoute2OccPat|)" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat\|'" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="Route2Signal(r)=Green" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I|org.eventb.core.guard#("/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="r∈dom(Route2OccPath)" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I|org.eventb.core.guard#,"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="EVTALLHYPRoute2OccPat|" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#EVTHYPRoute2OccPat\|)" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="Route2OccPath(r)=NullPath" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.event#I|org.eventb.core.guard#+"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="HYPSR3_Signam" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="Route2Signal∈ROUTE → SIGNAL" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#E"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/SafetyRailV7/SR_M3.bpo|org.eventb.core.poFile#SR_M3|org.eventb.core.poPredicateSet#HYPSR3_Signam" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="∀r⦂ROUTE·r∈dom(Route2OccPath)∧Route2OccPath(r)≠NullPath⇒Route2Signal(r)=Red" org.eventb.core.source="/SafetyRailV7/SR_M3.bum|org.eventb.core.machineFile#SR_M3|org.eventb.core.invariant#H"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="'" org.eventb.core.assignment="Route_Req  ≔  ∅" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="Route_Cel  ≔  ∅" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="Route_Occ ≔ ∅" org.eventb.core.label="act3"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="Route2Path ≔ ∅" org.eventb.core.label="act4"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="*" org.eventb.core.identifier="Route_Req"/>
+    <org.eventb.core.variable name=";" org.eventb.core.identifier="Route_Cel"/>
+    <org.eventb.core.variable name="+" org.eventb.core.identifier="Route_Occ"/>
+    <org.eventb.core.invariant name="," org.eventb.core.label="inv1" org.eventb.core.predicate="Route_Req ⊆ ROUTE"/>
+    <org.eventb.core.invariant name="8" org.eventb.core.label="inv2" org.eventb.core.predicate="Route_Cel ⊆ ROUTE"/>
+    <org.eventb.core.invariant name="-" org.eventb.core.label="inv3" org.eventb.core.predicate="Route_Occ ⊆ ROUTE"/>
+    <org.eventb.core.seesContext name="." org.eventb.core.target="SR0_Path"/>
+    <org.eventb.core.event name="7" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="ATS_Request">
+        <org.eventb.core.parameter name="'" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∉ Route_Req"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="Route_Req ≔ Route_Req ∪ {r}" org.eventb.core.label="act1"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name=":" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="ATS_Cancel">
+        <org.eventb.core.parameter name="'" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ Route_Req"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="Route_Cel ≔ Route_Cel ∪ {r}" org.eventb.core.label="act1"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="/" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Route_Reserve">
+        <org.eventb.core.parameter name="'" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ Route_Req"/>
+        <org.eventb.core.guard name="," org.eventb.core.label="grd2" org.eventb.core.predicate="r ∉ Route_Cel"/>
+        <org.eventb.core.guard name="-" org.eventb.core.label="grd3" org.eventb.core.predicate="r ∉ dom(Route2Path)"/>
+        <org.eventb.core.guard name="*" org.eventb.core.label="grd4" org.eventb.core.predicate="PathConflict[Route2InitPath[{r}]] ∩ ran(Route2Path)=∅"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="Route2Path ≔ Route2Path ∪ {r↦Route2InitPath(r)} " org.eventb.core.label="act1"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="0" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Route_Release">
+        <org.eventb.core.parameter name="'" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ dom(Route2Path)"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd2" org.eventb.core.predicate="Route2Path(r) = NullPath"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="Route2Path ≔ {r} ⩤ Route2Path " org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="," org.eventb.core.label="grd3" org.eventb.core.predicate="r ∉ Route_Occ"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="Route_Req ≔ Route_Req ∖ {r}" org.eventb.core.label="act2"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="&gt;" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Route_Cancel">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ Route_Req"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd2" org.eventb.core.predicate="r ∈ Route_Cel "/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd3" org.eventb.core.predicate="r ∉ Route_Occ"/>
+        <org.eventb.core.parameter name="*" org.eventb.core.identifier="r"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="Route_Req ≔ Route_Req ∖ {r}" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="Route_Cel ≔ Route_Cel ∖ {r}" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="Route2Path ≔ {r} ⩤ Route2Path " org.eventb.core.label="act3"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="1" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Train_Enter">
+        <org.eventb.core.parameter name="'" org.eventb.core.identifier="r"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="Route_Occ ≔ Route_Occ ∪ {r}" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="-" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ dom(Route2Path)"/>
+        <org.eventb.core.guard name="." org.eventb.core.label="grd2" org.eventb.core.predicate="r ∉ Route_Occ"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="?" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Train_Move">
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ Route_Occ"/>
+        <org.eventb.core.guard name="*" org.eventb.core.label="grd2" org.eventb.core.predicate="r ∈ dom(Route2Path)"/>
+        <org.eventb.core.guard name="+" org.eventb.core.label="grd3" org.eventb.core.predicate="p = Route2Path(r)"/>
+        <org.eventb.core.guard name="/" org.eventb.core.label="grd4" org.eventb.core.predicate="p ≠ NullPath"/>
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd5" org.eventb.core.predicate="sp ∈ PathSub[{p}]"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="Route2Path(r) ≔ sp" org.eventb.core.label="act1"/>
+        <org.eventb.core.parameter name="," org.eventb.core.identifier="r"/>
+        <org.eventb.core.parameter name="-" org.eventb.core.identifier="p"/>
+        <org.eventb.core.parameter name="." org.eventb.core.identifier="sp"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="2" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Train_Leave">
+        <org.eventb.core.parameter name="'" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ Route_Occ"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="Route_Occ ≔ Route_Occ ∖ {r}" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="," org.eventb.core.label="grd2" org.eventb.core.predicate="r ∈ dom(Route2Path)"/>
+        <org.eventb.core.guard name="." org.eventb.core.label="grd3" org.eventb.core.predicate="Route2Path(r) = NullPath"/>
+    </org.eventb.core.event>
+    <org.eventb.core.invariant name="5" org.eventb.core.label="inv4" org.eventb.core.predicate="Route2Path ∈ ROUTE ⇸ PATH"/>
+    <org.eventb.core.invariant name="3" org.eventb.core.label="inv5" org.eventb.core.predicate="∀r1,r2·(r1 ≠ r2 ∧ r1 ∈ dom(Route2Path) ∧ r2 ∈ dom(Route2Path)) ⇒ (PathConflict∼[Route2Path[{r1}]] ∩ Route2Path[{r2}] = ∅) "/>
+    <org.eventb.core.variable name="4" org.eventb.core.identifier="Route2Path"/>
+    <org.eventb.core.invariant name="=" org.eventb.core.label="inv6" org.eventb.core.predicate="∀r·r∈Route_Occ ⇒ (Route2Path[{r}] ≠ ∅)"/>
+</org.eventb.core.machineFile>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
+    <org.eventb.core.extendsContext name="'" org.eventb.core.target="SR1_Block"/>
+    <org.eventb.core.constant name="(" org.eventb.core.identifier="POINT"/>
+    <org.eventb.core.axiom name=")" org.eventb.core.label="axm1" org.eventb.core.predicate="POINT ⊆ BLOCK"/>
+    <org.eventb.core.constant name="." org.eventb.core.identifier="Point2InitPos"/>
+    <org.eventb.core.constant name="*" org.eventb.core.identifier="Route2Point2Pos"/>
+    <org.eventb.core.axiom name="+" org.eventb.core.label="axm2" org.eventb.core.predicate="Route2Point2Pos ∈ (ROUTE ↔ POINT) → POS"/>
+    <org.eventb.core.carrierSet name="," org.eventb.core.identifier="POS"/>
+    <org.eventb.core.axiom name="/" org.eventb.core.label="axm4" org.eventb.core.predicate="Point2InitPos ∈ POINT → POS"/>
+    <org.eventb.core.axiom name="-" org.eventb.core.label="axm3" org.eventb.core.predicate="∀pos·pos∈POS⇒(finite(POS))"/>
+    <org.eventb.core.constant name="0" org.eventb.core.identifier="Lock"/>
+    <org.eventb.core.constant name="1" org.eventb.core.identifier="Unlock"/>
+    <org.eventb.core.carrierSet name="2" org.eventb.core.identifier="MODE"/>
+    <org.eventb.core.axiom name="3" org.eventb.core.label="axm5" org.eventb.core.predicate="partition(MODE,{Lock},{Unlock})"/>
+</org.eventb.core.contextFile>

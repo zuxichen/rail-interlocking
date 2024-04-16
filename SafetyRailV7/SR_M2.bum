@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="INITIALISATION"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="Point2Pos ≔ Point2InitPos" org.eventb.core.label="act7"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="Point2Mode ≔ POINT × {Unlock}" org.eventb.core.label="act8"/>
+    </org.eventb.core.event>
+    <org.eventb.core.refinesMachine name="(" org.eventb.core.target="SR_M1"/>
+    <org.eventb.core.event name=")" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="ATS_Request">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="ATS_Request"/>
+    </org.eventb.core.event>
+    <org.eventb.core.seesContext name="+" org.eventb.core.target="SR2_Point"/>
+    <org.eventb.core.event name="*" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="ATS_Cancel">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="ATS_Cancel"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="," org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Route_Reserve">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Route_Reserve"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd6" org.eventb.core.predicate="∀po·(po ∈ (Path2Block[Route2InitPath[{r}]] ∩ POINT)) ⇒ (Point2Pos(po) = Route2Point2Pos({r ↦ po}))"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd7" org.eventb.core.predicate="∀po·(po ∈ (Path2Block[Route2InitPath[{r}]] ∩ POINT)) ⇒ (Point2Mode(po) = Lock)"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="-" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Route_Cancel">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Route_Cancel"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="." org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Route_Release">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Route_Release"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="1" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Train_Enter">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Train_Enter"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="B" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Train_Head_Move">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Train_Head_Move"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="C" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Train_Rear_Move">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Train_Rear_Move"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="2" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Train_Leave">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Train_Leave"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="3" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Block_Reserve">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Block_Reserve"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="/" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Block_Cancel">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Block_Cancel"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd4" org.eventb.core.predicate="∀po·po ∈ Block2Route∼[{r}] ∩ POINT ⇒ Point2Mode(po) = Unlock"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="0" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Block_Release">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Block_Release"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd5" org.eventb.core.predicate="b ∈ POINT ⇒ Point2Mode(b) = Unlock"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="4" org.eventb.core.comment="Before Route_Reserve" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Point_Switch">
+        <org.eventb.core.parameter name="'" org.eventb.core.identifier="po"/>
+        <org.eventb.core.parameter name="(" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="," org.eventb.core.label="grd1" org.eventb.core.predicate="r ∉ Route_Cel"/>
+        <org.eventb.core.guard name="*" org.eventb.core.label="grd2" org.eventb.core.predicate="r ∉ dom(Route2Path)"/>
+        <org.eventb.core.guard name="0" org.eventb.core.label="grd3" org.eventb.core.predicate="po ∈ Block2Route∼[{r}] ∩ POINT" org.eventb.core.theorem="true"/>
+        <org.eventb.core.action name="." org.eventb.core.assignment="Point2Pos(po) ≔ Route2Point2Pos({r ↦ po})" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="/" org.eventb.core.label="grd4" org.eventb.core.predicate="Point2Mode(po) = Unlock"/>
+        <org.eventb.core.guard name="-" org.eventb.core.label="grd5" org.eventb.core.predicate="Point2Pos(po) ≠ Route2Point2Pos({r ↦ po})"/>
+        <org.eventb.core.guard name="1" org.eventb.core.label="grd6" org.eventb.core.predicate="∀p·p ∈ ran(Route2OccPath)⇒ po ∉ Path2Block[{p}]" org.eventb.core.theorem="true"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="=" org.eventb.core.comment="Before Route_Reserve" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Point_Lock">
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∉ Route_Cel"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd2" org.eventb.core.predicate="r ∉ dom(Route2Path)"/>
+        <org.eventb.core.parameter name="+" org.eventb.core.identifier="r"/>
+        <org.eventb.core.parameter name="," org.eventb.core.identifier="po"/>
+        <org.eventb.core.guard name="0" org.eventb.core.label="grd3" org.eventb.core.predicate="po ∈ Block2Route∼[{r}] ∩ POINT"/>
+        <org.eventb.core.guard name="/" org.eventb.core.label="grd4" org.eventb.core.predicate="Point2Mode(po) = Unlock"/>
+        <org.eventb.core.guard name="-" org.eventb.core.label="grd5" org.eventb.core.predicate="Point2Pos(po) = Route2Point2Pos({r ↦ po})"/>
+        <org.eventb.core.action name="." org.eventb.core.assignment="Point2Mode ≔ {po ↦ Lock}  Point2Mode" org.eventb.core.label="act1"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="@" org.eventb.core.comment="Before Train_Enter" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Point_Unlock_Cancel">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ Route_Cel"/>
+        <org.eventb.core.parameter name=")" org.eventb.core.identifier="r"/>
+        <org.eventb.core.parameter name="*" org.eventb.core.identifier="po"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="Point2Mode ≔ {po ↦ Unlock} Point2Mode" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="1" org.eventb.core.label="grd2" org.eventb.core.predicate="po ∈ Block2Route∼[{r}] ∩ POINT"/>
+        <org.eventb.core.guard name="/" org.eventb.core.label="grd3" org.eventb.core.predicate="Point2Mode(po) = Lock"/>
+        <org.eventb.core.guard name="0" org.eventb.core.label="grd4" org.eventb.core.predicate="r ∉ Route_Occ"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="D" org.eventb.core.comment="Before Block_Release" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Point_Unlock_Release">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ Route_Occ"/>
+        <org.eventb.core.parameter name=")" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="6" org.eventb.core.label="grd2" org.eventb.core.predicate="po ∈ POINT"/>
+        <org.eventb.core.guard name="3" org.eventb.core.label="grd3" org.eventb.core.predicate="po ∈ Block2Route∼[{r}]"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="Point2Mode(po) ≔ Unlock" org.eventb.core.label="act1"/>
+        <org.eventb.core.parameter name="-" org.eventb.core.identifier="po"/>
+        <org.eventb.core.guard name="5" org.eventb.core.label="grd5" org.eventb.core.predicate="po ∉ Path2Block[{Route2Path(r)}]  "/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="5" org.eventb.core.identifier="Route_Req"/>
+    <org.eventb.core.variable name="7" org.eventb.core.identifier="Route_Cel"/>
+    <org.eventb.core.variable name="8" org.eventb.core.identifier="Route_Occ"/>
+    <org.eventb.core.variable name="9" org.eventb.core.identifier="Route2Path"/>
+    <org.eventb.core.variable name="6" org.eventb.core.identifier="Block2Route"/>
+    <org.eventb.core.variable name="A" org.eventb.core.identifier="Route2OccPath"/>
+    <org.eventb.core.variable name=":" org.eventb.core.identifier="Point2Pos"/>
+    <org.eventb.core.invariant name=";" org.eventb.core.label="inv1" org.eventb.core.predicate="Point2Pos  ∈ POINT → POS"/>
+    <org.eventb.core.variable name="&gt;" org.eventb.core.identifier="Point2Mode"/>
+    <org.eventb.core.invariant name="?" org.eventb.core.label="inv2" org.eventb.core.predicate="Point2Mode ∈ POINT → MODE"/>
+    <org.eventb.core.invariant name="E" org.eventb.core.label="inv3" org.eventb.core.predicate="∀r,po·po ∈ (Block2Route∼[{r}] ∩ POINT) ∧ r ∈ ran(Block2Route)  ⇒ (Point2Pos(po) = Route2Point2Pos({r ↦ po}))"/>
+    <org.eventb.core.invariant name="F" org.eventb.core.label="inv4" org.eventb.core.predicate="∀r,po·po ∈ (Block2Route∼[{r}] ∩ POINT) ∧ r ∈ ran(Block2Route)  ⇒ (Point2Mode(po) = Lock)"/>
+</org.eventb.core.machineFile>

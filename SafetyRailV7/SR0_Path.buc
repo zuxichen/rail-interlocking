@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.contextFile org.eventb.core.configuration="org.eventb.core.fwd;de.prob.symbolic.ctxBase" version="3">
+    <org.eventb.core.carrierSet name="'" org.eventb.core.identifier="PATH"/>
+    <org.eventb.core.constant name="(" org.eventb.core.identifier="PathConflict"/>
+    <org.eventb.core.axiom name=")" org.eventb.core.label="axm1" org.eventb.core.predicate="PathConflict ∈ PATH ↔ PATH"/>
+    <org.eventb.core.axiom name="*" org.eventb.core.label="axm2" org.eventb.core.predicate="∀p·p∈PATH ⇒ (PathConflict ∩ id = ∅) "/>
+    <org.eventb.core.axiom name="+" org.eventb.core.label="axm3" org.eventb.core.predicate="∀p·p∈PATH ⇒ (PathConflict = PathConflict∼) "/>
+    <org.eventb.core.axiom name="," org.eventb.core.label="axm4" org.eventb.core.predicate="∀p·p∈PATH ⇒ (finite(PATH))"/>
+    <org.eventb.core.carrierSet name="-" org.eventb.core.identifier="ROUTE"/>
+    <org.eventb.core.constant name="." org.eventb.core.identifier="Route2InitPath"/>
+    <org.eventb.core.axiom name="/" org.eventb.core.label="axm5" org.eventb.core.predicate="Route2InitPath ∈ ROUTE → PATH"/>
+    <org.eventb.core.constant name="0" org.eventb.core.identifier="PathSub"/>
+    <org.eventb.core.axiom name="1" org.eventb.core.label="axm6" org.eventb.core.predicate="PathSub ∈ PATH ↔ PATH" org.eventb.core.theorem="true"/>
+    <org.eventb.core.axiom name="2" org.eventb.core.label="axm7" org.eventb.core.predicate="∀p·p∈PATH ⇒ (∀p1,p2·p1 ∈ PathSub[{p2}] ∧ p ∉PathConflict[{p2}] ⇒ p∉PathConflict[{p1}])"/>
+    <org.eventb.core.axiom name="3" org.eventb.core.label="axm8" org.eventb.core.predicate="∀p·p∈PATH ⇒ NullPath ∈ PathSub[{p}]"/>
+    <org.eventb.core.constant name="4" org.eventb.core.identifier="NullPath"/>
+    <org.eventb.core.axiom name="5" org.eventb.core.label="axm9" org.eventb.core.predicate="NullPath ∈ PATH"/>
+</org.eventb.core.contextFile>

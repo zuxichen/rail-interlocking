@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.poFile org.eventb.core.poStamp="0">
+    <org.eventb.core.poPredicateSet name="ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poIdentifier name="PATH" org.eventb.core.type="ℙ(PATH)"/>
+        <org.eventb.core.poIdentifier name="ROUTE" org.eventb.core.type="ℙ(ROUTE)"/>
+        <org.eventb.core.poIdentifier name="Route2InitPath" org.eventb.core.type="ℙ(ROUTE×PATH)"/>
+        <org.eventb.core.poIdentifier name="PathConflict" org.eventb.core.type="ℙ(PATH×PATH)"/>
+        <org.eventb.core.poIdentifier name="NullPath" org.eventb.core.type="PATH"/>
+        <org.eventb.core.poIdentifier name="PathSub" org.eventb.core.type="ℙ(PATH×PATH)"/>
+        <org.eventb.core.poPredicate name="Route2InitPati" org.eventb.core.predicate="PathConflict∈PATH ↔ PATH" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#)"/>
+        <org.eventb.core.poPredicate name="Route2InitPatj" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒PathConflict∩(id ⦂ ℙ(PATH×PATH))=(∅ ⦂ ℙ(PATH×PATH))" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#*"/>
+        <org.eventb.core.poPredicate name="Route2InitPatk" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒PathConflict=PathConflict∼" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#+"/>
+        <org.eventb.core.poPredicate name="Route2InitPatl" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒finite(PATH)" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#,"/>
+        <org.eventb.core.poPredicate name="Route2InitPatm" org.eventb.core.predicate="Route2InitPath∈ROUTE → PATH" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="Route2InitPatn" org.eventb.core.predicate="PathSub∈PATH ↔ PATH" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#1"/>
+        <org.eventb.core.poPredicate name="Route2InitPato" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∀p1⦂PATH,p2⦂PATH·p1∈PathSub[{p2}]∧p∉PathConflict[{p2}]⇒p∉PathConflict[{p1}])" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#2"/>
+        <org.eventb.core.poPredicate name="Route2InitPatp" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒NullPath∈PathSub[{p}]" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#3"/>
+        <org.eventb.core.poPredicate name="Route2InitPatq" org.eventb.core.predicate="NullPath∈PATH" org.eventb.core.source="/SafetyRailV7/SR0_Path.buc|org.eventb.core.contextFile#SR0_Path|org.eventb.core.axiom#5"/>
+        <org.eventb.core.poIdentifier name="BLOCK" org.eventb.core.type="ℙ(BLOCK)"/>
+        <org.eventb.core.poIdentifier name="Path2Block" org.eventb.core.type="ℙ(PATH×BLOCK)"/>
+        <org.eventb.core.poIdentifier name="PathReduce" org.eventb.core.type="ℙ(PATH×ℙ(BLOCK×PATH))"/>
+        <org.eventb.core.poIdentifier name="PathIncrease" org.eventb.core.type="ℙ(PATH×ℙ(BLOCK×PATH))"/>
+        <org.eventb.core.poPredicate name="Route2InitPatr" org.eventb.core.predicate="Path2Block∈PATH ↔ BLOCK" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#)"/>
+        <org.eventb.core.poPredicate name="Route2InitPats" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∀q⦂PATH·q∉PathConflict[{p}]⇔Path2Block[{p}]∩Path2Block[{q}]=(∅ ⦂ ℙ(BLOCK)))" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#+"/>
+        <org.eventb.core.poPredicate name="Route2InitPatt" org.eventb.core.predicate="PathReduce∈PATH ∖ {NullPath} → (BLOCK → PATH)" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#-"/>
+        <org.eventb.core.poPredicate name="Route2InitPatu" org.eventb.core.predicate="∀p⦂PATH·p∈PATH ∖ {NullPath}⇒(∃b⦂BLOCK·b∈BLOCK⇒PathReduce(p)(b)∈PathSub[{p}])" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#."/>
+        <org.eventb.core.poPredicate name="Route2InitPatv" org.eventb.core.predicate="∀p⦂PATH·p∈PATH ∖ {NullPath}⇒(∃b⦂BLOCK·b∈BLOCK⇒Path2Block[{PathReduce(p)(b)}]=Path2Block[{p}] ∖ {b})" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#0"/>
+        <org.eventb.core.poPredicate name="Route2InitPatw" org.eventb.core.predicate="Path2Block[{NullPath}]=(∅ ⦂ ℙ(BLOCK))" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="Route2InitPatx" org.eventb.core.predicate="PathIncrease∈PATH → (BLOCK → PATH)" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#1"/>
+        <org.eventb.core.poPredicate name="Route2InitPaty" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∃b⦂BLOCK·b∈BLOCK⇒p∈PathSub[{PathIncrease(p)(b)}])" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#3"/>
+        <org.eventb.core.poPredicate name="Route2InitPatz" org.eventb.core.predicate="∀p⦂PATH·p∈PATH⇒(∃b⦂BLOCK·b∈BLOCK⇒Path2Block[{p}]∪{b}=Path2Block[{PathIncrease(p)(b)}])" org.eventb.core.source="/SafetyRailV7/SR1_Block.buc|org.eventb.core.contextFile#SR1_Block|org.eventb.core.axiom#4"/>
+        <org.eventb.core.poIdentifier name="MODE" org.eventb.core.type="ℙ(MODE)"/>
+        <org.eventb.core.poIdentifier name="POS" org.eventb.core.type="ℙ(POS)"/>
+        <org.eventb.core.poIdentifier name="Lock" org.eventb.core.type="MODE"/>
+        <org.eventb.core.poIdentifier name="POINT" org.eventb.core.type="ℙ(BLOCK)"/>
+        <org.eventb.core.poIdentifier name="Route2Point2Pos" org.eventb.core.type="ℙ(ℙ(ROUTE×BLOCK)×POS)"/>
+        <org.eventb.core.poIdentifier name="Unlock" org.eventb.core.type="MODE"/>
+        <org.eventb.core.poIdentifier name="Point2InitPos" org.eventb.core.type="ℙ(BLOCK×POS)"/>
+    </org.eventb.core.poPredicateSet>
+    <org.eventb.core.poPredicateSet name="ALLHYP" org.eventb.core.parentSet="/SafetyRailV7/SR2_Point.bpo|org.eventb.core.poFile#SR2_Point|org.eventb.core.poPredicateSet#ABSHYP" org.eventb.core.poStamp="0">
+        <org.eventb.core.poPredicate name="PRD0" org.eventb.core.predicate="POINT⊆BLOCK" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#)"/>
+        <org.eventb.core.poPredicate name="PRD1" org.eventb.core.predicate="Route2Point2Pos∈(ROUTE ↔ POINT) → POS" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#+"/>
+        <org.eventb.core.poPredicate name="PRD2" org.eventb.core.predicate="Point2InitPos∈POINT → POS" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#\/"/>
+        <org.eventb.core.poPredicate name="PRD3" org.eventb.core.predicate="∀pos⦂POS·pos∈POS⇒finite(POS)" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#-"/>
+        <org.eventb.core.poPredicate name="PRD4" org.eventb.core.predicate="partition(MODE,{Lock},{Unlock})" org.eventb.core.source="/SafetyRailV7/SR2_Point.buc|org.eventb.core.contextFile#SR2_Point|org.eventb.core.axiom#3"/>
+    </org.eventb.core.poPredicateSet>
+</org.eventb.core.poFile>

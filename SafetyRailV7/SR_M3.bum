@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<org.eventb.core.machineFile org.eventb.core.configuration="org.eventb.core.fwd" version="5">
+    <org.eventb.core.event name="'" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="INITIALISATION">
+        <org.eventb.core.action name="'" org.eventb.core.assignment="Route_Req  ≔  ∅" org.eventb.core.label="act1"/>
+        <org.eventb.core.action name="(" org.eventb.core.assignment="Route_Cel  ≔  ∅" org.eventb.core.label="act2"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="Route_Occ ≔ ∅" org.eventb.core.label="act3"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="Route2Path ≔ ∅" org.eventb.core.label="act4"/>
+        <org.eventb.core.action name="+" org.eventb.core.assignment="Block2Route ≔ ∅" org.eventb.core.label="act5"/>
+        <org.eventb.core.action name="," org.eventb.core.assignment="Route2OccPath ≔ ∅" org.eventb.core.label="act6"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="Point2Pos ≔ Point2InitPos" org.eventb.core.label="act7"/>
+        <org.eventb.core.action name="." org.eventb.core.assignment="Point2Mode ≔ POINT × {Unlock}" org.eventb.core.label="act8"/>
+        <org.eventb.core.action name="/" org.eventb.core.assignment="Route2Signal ≔ ROUTE × {Red}" org.eventb.core.label="act9"/>
+        <org.eventb.core.refinesEvent name="0" org.eventb.core.target="INITIALISATION"/>
+    </org.eventb.core.event>
+    <org.eventb.core.seesContext name="(" org.eventb.core.target="SR3_Signal"/>
+    <org.eventb.core.refinesMachine name=")" org.eventb.core.target="SR_M2"/>
+    <org.eventb.core.variable name="*" org.eventb.core.identifier="Route_Req"/>
+    <org.eventb.core.variable name="+" org.eventb.core.identifier="Route_Cel"/>
+    <org.eventb.core.variable name="," org.eventb.core.identifier="Route_Occ"/>
+    <org.eventb.core.variable name="-" org.eventb.core.identifier="Route2Path"/>
+    <org.eventb.core.variable name="." org.eventb.core.identifier="Block2Route"/>
+    <org.eventb.core.variable name="/" org.eventb.core.identifier="Route2OccPath"/>
+    <org.eventb.core.variable name="0" org.eventb.core.identifier="Point2Pos"/>
+    <org.eventb.core.variable name="1" org.eventb.core.identifier="Point2Mode"/>
+    <org.eventb.core.event name="2" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="ATS_Request">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="ATS_Request"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="3" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="ATS_Cancel">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="ATS_Cancel"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="5" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Route_Reserve">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Route_Reserve"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="7" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Route_Cancel">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Route_Cancel"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="8" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Route_Release">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Route_Release"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="9" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Train_Enter">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Train_Enter"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd4" org.eventb.core.predicate="Route2Signal(r) = Green"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name=":" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Train_Head_Move">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Train_Head_Move"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name=";" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Train_Rear_Move">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Train_Rear_Move"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="&gt;" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Train_Leave">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Train_Leave"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="4" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Block_Reserve">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Block_Reserve"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="6" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Block_Cancel">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Block_Cancel"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd5" org.eventb.core.predicate="Route2Signal(r) = Red"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="=" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Block_Release">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Block_Release"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd6" org.eventb.core.predicate="Route2Signal(r) = Red"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="?" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Point_Switch">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Point_Switch"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="A" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Point_Lock">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Point_Lock"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="B" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Point_Unlock_Cancel">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Point_Unlock_Cancel"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd5" org.eventb.core.predicate="Route2Signal(r) = Red"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="C" org.eventb.core.convergence="0" org.eventb.core.extended="true" org.eventb.core.label="Point_Unlock_Release">
+        <org.eventb.core.refinesEvent name="'" org.eventb.core.target="Point_Unlock_Release"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd6" org.eventb.core.predicate="Route2Signal(r) = Red"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="G" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Signal_Green_Reserve">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ dom(Route2Path)"/>
+        <org.eventb.core.parameter name="(" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name=")" org.eventb.core.label="grd2" org.eventb.core.predicate="r ∈ Route_Req"/>
+        <org.eventb.core.action name="*" org.eventb.core.assignment="Route2Signal ≔ {r ↦ Green}  Route2Signal" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="+" org.eventb.core.label="grd3" org.eventb.core.predicate="r ∉ Route_Cel"/>
+        <org.eventb.core.guard name="2" org.eventb.core.label="grd4" org.eventb.core.predicate="Route2Signal(r)=Red"/>
+        <org.eventb.core.guard name="," org.eventb.core.label="grd5" org.eventb.core.predicate="Block2Route∼[{r}] = Path2Block[{Route2InitPath(r)}]"/>
+        <org.eventb.core.guard name="-" org.eventb.core.label="grd6" org.eventb.core.predicate="∀po·(po ∈ (Path2Block[Route2InitPath[{r}]] ∩ POINT)) ⇒ (Point2Pos(po) = Route2Point2Pos({r ↦ po}))"/>
+        <org.eventb.core.guard name="/" org.eventb.core.label="grd7" org.eventb.core.predicate="∀po·(po ∈ (Path2Block[Route2InitPath[{r}]] ∩ POINT)) ⇒ (Point2Mode(po) = Lock)"/>
+        <org.eventb.core.guard name="1" org.eventb.core.label="grd8" org.eventb.core.predicate="r ∉ dom(Route2OccPath)"/>
+    </org.eventb.core.event>
+    <org.eventb.core.event name="F" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Signal_Red_Cancel">
+        <org.eventb.core.parameter name="'" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="," org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ dom(Route2Path)"/>
+        <org.eventb.core.action name=")" org.eventb.core.assignment="Route2Signal ≔ {r ↦ Red}  Route2Signal" org.eventb.core.label="act1"/>
+        <org.eventb.core.guard name="*" org.eventb.core.label="grd2" org.eventb.core.predicate="Route2Signal(r) = Green"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd3" org.eventb.core.predicate="r ∈ Route_Cel"/>
+        <org.eventb.core.guard name="+" org.eventb.core.label="grd4" org.eventb.core.predicate="r ∉ dom(Route2OccPath)"/>
+        <org.eventb.core.guard name="/" org.eventb.core.label="grd5" org.eventb.core.predicate="∀po·(po ∈ (Path2Block[Route2InitPath[{r}]] ∩ POINT)) ⇒ (Point2Mode(po) = Lock)"/>
+        <org.eventb.core.guard name="." org.eventb.core.label="grd6" org.eventb.core.predicate="∀po·(po ∈ (Path2Block[Route2InitPath[{r}]] ∩ POINT)) ⇒ (Point2Pos(po) = Route2Point2Pos({r ↦ po}))"/>
+        <org.eventb.core.guard name="-" org.eventb.core.label="grd7" org.eventb.core.predicate="Block2Route∼[{r}] = Path2Block[{Route2InitPath(r)}]"/>
+    </org.eventb.core.event>
+    <org.eventb.core.variable name="D" org.eventb.core.identifier="Route2Signal"/>
+    <org.eventb.core.invariant name="E" org.eventb.core.label="inv1" org.eventb.core.predicate="Route2Signal ∈ ROUTE → SIGNAL"/>
+    <org.eventb.core.invariant name="H" org.eventb.core.label="inv2" org.eventb.core.predicate="∀r·r ∈ dom(Route2OccPath) ∧ Route2OccPath(r) ≠ NullPath ⇒ Route2Signal(r) = Red"/>
+    <org.eventb.core.event name="I" org.eventb.core.convergence="0" org.eventb.core.extended="false" org.eventb.core.label="Signal_Red_Occupied">
+        <org.eventb.core.guard name="'" org.eventb.core.label="grd1" org.eventb.core.predicate="r ∈ dom(Route2Path)"/>
+        <org.eventb.core.guard name="(" org.eventb.core.label="grd3" org.eventb.core.predicate="Route2Signal(r) = Green"/>
+        <org.eventb.core.parameter name="*" org.eventb.core.identifier="r"/>
+        <org.eventb.core.guard name="," org.eventb.core.label="grd4" org.eventb.core.predicate="r ∈ dom(Route2OccPath)"/>
+        <org.eventb.core.guard name="+" org.eventb.core.label="grd5" org.eventb.core.predicate="Route2OccPath(r) = NullPath"/>
+        <org.eventb.core.action name="-" org.eventb.core.assignment="Route2Signal(r) ≔ Red" org.eventb.core.label="act1"/>
+    </org.eventb.core.event>
+</org.eventb.core.machineFile>

@@ -1,0 +1,1057 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage{bsymb,b2latex}
+\begin{document}
+\MultiTitle{SafetyRailV7}
+\MultiHeader{CONTEXT}{SR0\_Path}
+\CONTEXT{SR0\_Path}{}{}
+\SETS{
+	\Set{PATH}{}
+	\Set{ROUTE}{}
+}
+\CONSTANTS{
+	\Constant{PathConflict}{}
+	\Constant{Route2InitPath}{}
+	\Constant{PathSub}{}
+	\Constant{NullPath}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$PathConflict \in{} PATH \rel{} PATH$}{}
+	\Axiom{axm2}{false}{$\forall{}p\qdot{}p\in{}PATH \limp{} (PathConflict \binter{} id = \emptyset{}) $}{}
+	\Axiom{axm3}{false}{$\forall{}p\qdot{}p\in{}PATH \limp{} (PathConflict = PathConflict\converse{}) $}{}
+	\Axiom{axm4}{false}{$\forall{}p\qdot{}p\in{}PATH \limp{} (finite(PATH))$}{}
+	\Axiom{axm5}{false}{$Route2InitPath \in{} ROUTE \tfun{} PATH$}{}
+	\Axiom{axm6}{true}{$PathSub \in{} PATH \rel{} PATH$}{}
+	\Axiom{axm7}{false}{$\forall{}p\qdot{}p\in{}PATH \limp{} (\forall{}p1,p2\qdot{}p1 \in{} PathSub[\{p2\}] \land{} p \notin{}PathConflict[\{p2\}] \limp{} p\notin{}PathConflict[\{p1\}])$}{}
+	\Axiom{axm8}{false}{$\forall{}p\qdot{}p\in{}PATH \limp{} NullPath \in{} PathSub[\{p\}]$}{}
+	\Axiom{axm9}{false}{$NullPath \in{} PATH$}{}
+}
+\END
+\MultiHeader{CONTEXT}{SR1\_Block}
+\CONTEXT{SR1\_Block}{SR0\_Path}{}
+\SETS{
+	\Set{BLOCK}{}
+}
+\CONSTANTS{
+	\Constant{Path2Block}{}
+	\Constant{PathReduce}{}
+	\Constant{PathIncrease}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$Path2Block \in{} PATH \rel{} BLOCK$}{}
+	\Axiom{axm2}{false}{$\forall{}p\qdot{}p \in{} PATH\limp{}(\forall{}q\qdot{}q \notin{} PathConflict[\{p\}]\leqv{}(Path2Block[\{p\}]\binter{}Path2Block[\{q\}]=\emptyset{}))$}{}
+	\Axiom{axm3}{false}{$PathReduce \in{} (PATH\setminus{}\{NullPath\})\tfun{}(BLOCK\tfun{}PATH)$}{}
+	\Axiom{axm4}{false}{$\forall{}p\qdot{}p \in{} PATH\setminus{}\{NullPath\}\limp{}(\exists{}b\qdot{}b\in{}BLOCK\limp{}PathReduce(p)(b)\in{} PathSub[\{p\}])$}{}
+	\Axiom{axm5}{false}{$\forall{}p\qdot{}p \in{} PATH\setminus{}\{NullPath\}\limp{}(\exists{}b\qdot{}b\in{}BLOCK\limp{}Path2Block[\{PathReduce(p)(b)\}]=Path2Block[\{p\}]\setminus{}\{b\})$}{}
+	\Axiom{axm6}{false}{$Path2Block[\{NullPath\}]=\emptyset{}$}{}
+	\Axiom{axm7}{false}{$PathIncrease \in{} PATH \tfun{} (BLOCK \tfun{} PATH)$}{}
+	\Axiom{axm8}{false}{$\forall{}p\qdot{}p \in{} PATH \limp{}(\exists{}b\qdot{}b\in{}BLOCK \limp{} p \in{} PathSub[\{PathIncrease(p)(b)\}])$}{}
+	\Axiom{axm9}{false}{$\forall{}p\qdot{}p \in{} PATH \limp{}(\exists{}b\qdot{}b\in{}BLOCK \limp{} Path2Block[\{p\}] \bunion{} \{b\} = Path2Block[\{PathIncrease(p)(b)\}])$}{}
+}
+\END
+\MultiHeader{CONTEXT}{SR2\_Point}
+\CONTEXT{SR2\_Point}{SR1\_Block}{}
+\SETS{
+	\Set{POS}{}
+	\Set{ISLOCK}{}
+}
+\CONSTANTS{
+	\Constant{POINT}{}
+	\Constant{Point2InitPos}{}
+	\Constant{Route2Point2Pos}{}
+	\Constant{Lock}{}
+	\Constant{Unlock}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$POINT \subseteq{} BLOCK$}{}
+	\Axiom{axm2}{false}{$Route2Point2Pos \in{} (ROUTE \rel{} POINT) \tfun{} POS$}{}
+	\Axiom{axm4}{false}{$Point2InitPos \in{} POINT \tfun{} POS$}{}
+	\Axiom{axm3}{false}{$\forall{}pos\qdot{}pos\in{}POS\limp{}(finite(POS))$}{}
+	\Axiom{axm5}{false}{$partition(ISLOCK,\{Lock\},\{Unlock\})$}{}
+}
+\END
+\MultiHeader{CONTEXT}{SR3\_Signal}
+\CONTEXT{SR3\_Signal}{SR2\_Point}{}
+\SETS{
+	\Set{SIGNAL}{}
+}
+\CONSTANTS{
+	\Constant{Red}{}
+	\Constant{Green}{}
+}
+\AXIOMS{
+	\Axiom{axm1}{false}{$partition(SIGNAL,\{Red\},\{Green\})$}{}
+}
+\END
+\MultiHeader{MACHINE}{SR\_M0}
+\MACHINE{SR\_M0}{}{SR0\_Path}{}
+\VARIABLES{
+	\Variable{Route\_Req}{}
+	\Variable{Route\_Cel}{}
+	\Variable{Route\_Occ}{}
+	\Variable{Route2Path}{}
+}
+\INVARIANTS{
+	\Invariant{inv1}{false}{$Route\_Req \subseteq{} ROUTE$}{}
+	\Invariant{inv2}{false}{$Route\_Cel \subseteq{} ROUTE$}{}
+	\Invariant{inv3}{false}{$Route\_Occ \subseteq{} ROUTE$}{}
+	\Invariant{inv4}{false}{$Route2Path \in{} ROUTE \pfun{} PATH$}{}
+	\Invariant{inv5}{false}{$\forall{}r1,r2\qdot{}(r1 \neq{} r2 \land{} r1 \in{} dom(Route2Path) \land{} r2 \in{} dom(Route2Path)) \limp{} (PathConflict\converse{}[Route2Path[\{r1\}]] \binter{} Route2Path[\{r2\}] = \emptyset{}) $}{}
+	\Invariant{inv6}{false}{$\forall{}r\qdot{}r\in{}Route\_Occ \limp{} (Route2Path[\{r\}] \neq{} \emptyset{})$}{}
+}
+\EVENTS{
+\INITIALISATION{false}{}{
+	\ACTIONS{false}{
+		\Action{act1}{$Route\_Req  \bcmeq{}  \emptyset{}$}{true}{}
+		\Action{act2}{$Route\_Cel  \bcmeq{}  \emptyset{}$}{true}{}
+		\Action{act3}{$Route\_Occ \bcmeq{} \emptyset{}$}{true}{}
+		\Action{act4}{$Route2Path \bcmeq{} \emptyset{}$}{true}{}
+	}
+}
+\EVT{ATS\_Request}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \notin{} Route\_Req$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Req \bcmeq{} Route\_Req \bunion{} \{r\}$}{true}{}
+	}
+}
+\EVT{Route\_Reserve}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{true}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Cel$}{true}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2Path)$}{true}{}
+		\Guard{grd4}{false}{$PathConflict[Route2InitPath[\{r\}]] \binter{} ran(Route2Path)=\emptyset{}$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path \bcmeq{} Route2Path \bunion{} \{r\mapsto{}Route2InitPath(r)\} $}{true}{}
+	}
+}
+\EVT{Train\_Enter}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Occ$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Occ \bcmeq{} Route\_Occ \bunion{} \{r\}$}{true}{}
+	}
+}
+\EVT{Route\_Sequential\_Release}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+		\Param{cp}{true}{}
+		\Param{sp}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{true}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd3}{false}{$cp = Route2Path(r)$}{true}{}
+		\Guard{grd4}{false}{$cp \neq{} NullPath$}{true}{}
+		\Guard{grd5}{false}{$sp \in{} PathSub[\{cp\}]$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path(r) \bcmeq{} sp$}{true}{}
+	}
+}
+\EVT{Train\_Leave}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{true}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd3}{false}{$Route2Path(r) = NullPath$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Occ \bcmeq{} Route\_Occ \setminus{} \{r\}$}{true}{}
+	}
+}
+\EVT{Route\_Release}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd2}{false}{$Route2Path(r) = NullPath$}{true}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path \bcmeq{} \{r\} \domsub{} Route2Path $}{true}{}
+		\Action{act2}{$Route\_Req \bcmeq{} Route\_Req \setminus{} \{r\}$}{true}{}
+	}
+}
+\EVT{ATS\_Cancel}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Cel \bcmeq{} Route\_Cel \bunion{} \{r\}$}{true}{}
+	}
+}
+\EVT{Route\_Cancel}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{true}{}
+		\Guard{grd2}{false}{$r \in{} Route\_Cel $}{true}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{true}{}
+		\Guard{grd4}{false}{$r \in{} dom(Route2Path)$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Req \bcmeq{} Route\_Req \setminus{} \{r\}$}{true}{}
+		\Action{act2}{$Route\_Cel \bcmeq{} Route\_Cel \setminus{} \{r\}$}{true}{}
+		\Action{act3}{$Route2Path \bcmeq{} \{r\} \domsub{} Route2Path $}{true}{}
+	}
+}
+}
+\END
+\MultiHeader{MACHINE}{SR\_M1}
+\MACHINE{SR\_M1}{SR\_M0}{SR1\_Block}{}
+\VARIABLES{
+	\Variable{Route\_Req}{}
+	\Variable{Route\_Cel}{}
+	\Variable{Route\_Occ}{}
+	\Variable{Route2Path}{}
+	\Variable{Block2Route}{}
+	\Variable{Route2OccPath}{}
+}
+\INVARIANTS{
+	\Invariant{inv1}{false}{$Block2Route \in{} BLOCK \pfun{} ROUTE$}{\\reserve}
+	\Invariant{inv2}{false}{$Route2OccPath \in{} ROUTE \pfun{} PATH$}{}
+	\Invariant{inv3}{false}{$\forall{}p\qdot{}p \in{} PATH \limp{} (\forall{}q\qdot{}q \notin{} PathConflict[\{p\}] \leqv{} (Path2Block[\{p\}] \binter{} Path2Block[\{q\}] = \emptyset{}))$}{}
+}
+\EVENTS{
+\INITIALISATION{true}{}{
+	\ACTIONS{false}{
+		\Action{act1}{$Route\_Req  \bcmeq{}  \emptyset{}$}{false}{}
+		\Action{act2}{$Route\_Cel  \bcmeq{}  \emptyset{}$}{false}{}
+		\Action{act3}{$Route\_Occ \bcmeq{} \emptyset{}$}{false}{}
+		\Action{act4}{$Route2Path \bcmeq{} \emptyset{}$}{false}{}
+		\Action{act5}{$Block2Route \bcmeq{} \emptyset{}$}{true}{}
+		\Action{act6}{$Route2OccPath \bcmeq{} \emptyset{}$}{true}{}
+	}
+}
+\EVT{ATS\_Request}{true}{ordinary}{ATS\_Request}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \notin{} Route\_Req$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Req \bcmeq{} Route\_Req \bunion{} \{r\}$}{false}{}
+	}
+}
+\EVT{Block\_Reserve}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+		\Param{p}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{true}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Cel$}{true}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2Path)$}{true}{}
+		\Guard{grd4}{false}{$p \in{} PATH$}{true}{}
+		\Guard{grd5}{false}{$p = Route2InitPath(r)$}{true}{}
+		\Guard{grd6}{false}{$Path2Block[\{p\}] \binter{} dom(Block2Route) = \emptyset{}$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Block2Route \bcmeq{} Block2Route \bunion{} (Path2Block[\{p\}] \cprod{} \{r\})$}{true}{}
+	}
+}
+\EVT{Route\_Reserve}{true}{ordinary}{Route\_Reserve}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Cel$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2Path)$}{false}{}
+		\Guard{grd4}{false}{$PathConflict[Route2InitPath[\{r\}]] \binter{} ran(Route2Path)=\emptyset{}$}{false}{}
+		\Guard{grd5}{false}{$Block2Route\converse{}[\{r\}] = Path2Block[\{Route2InitPath(r)\}]$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path \bcmeq{} Route2Path \bunion{} \{r\mapsto{}Route2InitPath(r)\} $}{false}{}
+	}
+}
+\EVT{Train\_Enter}{true}{ordinary}{Train\_Enter}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2OccPath)$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Occ \bcmeq{} Route\_Occ \bunion{} \{r\}$}{false}{}
+		\Action{act2}{$Route2OccPath \bcmeq{} Route2OccPath \bunion{} \{r \mapsto{} NullPath\}$}{true}{}
+	}
+}
+\EVT{Train\_Head\_Move}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+		\Param{op}{true}{}
+		\Param{b}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{true}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd4}{false}{$b \in{} Path2Block[\{Route2Path(r)\}]$}{true}{}
+		\Guard{grd5}{false}{$r \in{} dom(Route2OccPath)$}{true}{}
+		\Guard{grd6}{false}{$op = Route2OccPath(r)$}{true}{}
+		\Guard{grd7}{false}{$b \notin{} Path2Block[\{op\}]$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2OccPath(r) \bcmeq{} PathIncrease(op)(b)$}{true}{}
+	}
+}
+\EVT{Train\_Rear\_Move}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+		\Param{op}{true}{}
+		\Param{b}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{true}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2OccPath)$}{true}{}
+		\Guard{grd3}{false}{$op = Route2OccPath(r)$}{true}{}
+		\Guard{grd4}{false}{$b \in{} Path2Block[\{op\}]$}{true}{}
+		\Guard{grd5}{false}{$op \neq{} NullPath$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2OccPath(r) \bcmeq{} PathReduce(op)(b)$}{true}{}
+	}
+}
+\EVT{Block\_Release}{true}{ordinary}{Route\_Sequential\_Release}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{cp}{false}{}
+		\Param{sp}{false}{}
+		\Param{b}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$cp = Route2Path(r)$}{false}{}
+		\Guard{grd4}{false}{$cp \neq{} NullPath$}{false}{}
+		\Guard{grd5}{false}{$sp \in{} PathSub[\{cp\}]$}{false}{}
+		\Guard{grd6}{false}{$sp = PathReduce(cp)(b)$}{true}{}
+		\Guard{grd7}{false}{$r \in{} dom(Route2OccPath)$}{true}{}
+		\Guard{grd8}{false}{$b \notin{} Path2Block[\{Route2OccPath(r)\}]$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path(r) \bcmeq{} sp$}{false}{}
+	}
+}
+\EVT{Train\_Leave}{true}{ordinary}{Train\_Leave}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$Route2Path(r) = NullPath$}{false}{}
+		\Guard{grd4}{false}{$Block2Route\converse{}[\{r\}] = \emptyset{}$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Occ \bcmeq{} Route\_Occ \setminus{} \{r\}$}{false}{}
+	}
+}
+\EVT{Route\_Release}{true}{ordinary}{Route\_Release}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd2}{false}{$Route2Path(r) = NullPath$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path \bcmeq{} \{r\} \domsub{} Route2Path $}{false}{}
+		\Action{act2}{$Route\_Req \bcmeq{} Route\_Req \setminus{} \{r\}$}{false}{}
+		\Action{act3}{$Block2Route \bcmeq{} Block2Route \ransub{} \{r\}$}{true}{}
+		\Action{act4}{$Route2OccPath \bcmeq{} \{r\} \domsub{} Route2OccPath$}{true}{}
+	}
+}
+\EVT{ATS\_Cancel}{true}{ordinary}{ATS\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Cel \bcmeq{} Route\_Cel \bunion{} \{r\}$}{false}{}
+	}
+}
+\EVT{Block\_Cancel}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Cel$}{true}{}
+		\Guard{grd2}{false}{$r \in{} ran(Block2Route)$}{true}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Block2Route \bcmeq{} Block2Route \ransub{} \{r\}$}{true}{}
+	}
+}
+\EVT{Route\_Cancel}{true}{ordinary}{Route\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+		\Guard{grd2}{false}{$r \in{} Route\_Cel $}{false}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd4}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd5}{false}{$Block2Route\converse{}[\{r\}] = \emptyset{}$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Req \bcmeq{} Route\_Req \setminus{} \{r\}$}{false}{}
+		\Action{act2}{$Route\_Cel \bcmeq{} Route\_Cel \setminus{} \{r\}$}{false}{}
+		\Action{act3}{$Route2Path \bcmeq{} \{r\} \domsub{} Route2Path $}{false}{}
+	}
+}
+}
+\END
+\MultiHeader{MACHINE}{SR\_M2}
+\MACHINE{SR\_M2}{SR\_M1}{SR2\_Point}{}
+\VARIABLES{
+	\Variable{Route\_Req}{}
+	\Variable{Route\_Cel}{}
+	\Variable{Route\_Occ}{}
+	\Variable{Route2Path}{}
+	\Variable{Block2Route}{}
+	\Variable{Route2OccPath}{}
+	\Variable{Point2Pos}{}
+	\Variable{Point2Lock}{}
+}
+\INVARIANTS{
+	\Invariant{inv1}{false}{$Point2Pos  \in{} POINT \tfun{} POS$}{}
+	\Invariant{inv2}{false}{$Point2Lock \in{} POINT \tfun{} ISLOCK$}{}
+	\Invariant{inv3}{false}{$\forall{}r,po\qdot{}po \in{} (Path2Block[\{Route2Path(r)\}] \binter{} POINT) \land{} r \in{} dom(Route2Path)  \limp{} (Point2Pos(po) = Route2Point2Pos(\{r \mapsto{} po\}))$}{}
+	\Invariant{inv4}{false}{$\forall{}r,po\qdot{}po \in{} (Path2Block[\{Route2Path(r)\}] \binter{} POINT) \land{} r \in{} dom(Route2Path)  \limp{} (Point2Lock(po) = Lock)$}{}
+}
+\EVENTS{
+\INITIALISATION{true}{}{
+	\ACTIONS{false}{
+		\Action{act1}{$Route\_Req  \bcmeq{}  \emptyset{}$}{false}{}
+		\Action{act2}{$Route\_Cel  \bcmeq{}  \emptyset{}$}{false}{}
+		\Action{act3}{$Route\_Occ \bcmeq{} \emptyset{}$}{false}{}
+		\Action{act4}{$Route2Path \bcmeq{} \emptyset{}$}{false}{}
+		\Action{act5}{$Block2Route \bcmeq{} \emptyset{}$}{false}{}
+		\Action{act6}{$Route2OccPath \bcmeq{} \emptyset{}$}{false}{}
+		\Action{act7}{$Point2Pos \bcmeq{} Point2InitPos$}{true}{}
+		\Action{act8}{$Point2Lock \bcmeq{} POINT \cprod{} \{Unlock\}$}{true}{}
+	}
+}
+\EVT{ATS\_Request}{true}{ordinary}{ATS\_Request}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \notin{} Route\_Req$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Req \bcmeq{} Route\_Req \bunion{} \{r\}$}{false}{}
+	}
+}
+\EVT{Block\_Reserve}{true}{ordinary}{Block\_Reserve}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{p}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Cel$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2Path)$}{false}{}
+		\Guard{grd4}{false}{$p \in{} PATH$}{false}{}
+		\Guard{grd5}{false}{$p = Route2InitPath(r)$}{false}{}
+		\Guard{grd6}{false}{$Path2Block[\{p\}] \binter{} dom(Block2Route) = \emptyset{}$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Block2Route \bcmeq{} Block2Route \bunion{} (Path2Block[\{p\}] \cprod{} \{r\})$}{false}{}
+	}
+}
+\EVT{Point\_Switch}{false}{ordinary}{}{\\Before Route$\_$Reserve}{
+	\ANY{
+		\Param{po}{true}{}
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \notin{} Route\_Cel$}{true}{}
+		\Guard{grd2}{false}{$r \notin{} dom(Route2Path)$}{true}{}
+		\Guard{grd3}{false}{$po \in{} Block2Route\converse{}[\{r\}] \binter{} POINT$}{true}{}
+		\Guard{grd4}{false}{$Point2Pos(po) \neq{} Route2Point2Pos(\{r \mapsto{} po\})$}{true}{}
+		\Guard{grd5}{false}{$Point2Lock(po) = Unlock$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Point2Pos(po) \bcmeq{} Route2Point2Pos(\{r \mapsto{} po\})$}{true}{}
+	}
+}
+\EVT{Point\_Lock}{false}{ordinary}{}{\\Before Route$\_$Reserve}{
+	\ANY{
+		\Param{r}{true}{}
+		\Param{po}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \notin{} Route\_Cel$}{true}{}
+		\Guard{grd2}{false}{$r \notin{} dom(Route2Path)$}{true}{}
+		\Guard{grd3}{false}{$po \in{} Block2Route\converse{}[\{r\}] \binter{} POINT$}{true}{}
+		\Guard{grd4}{false}{$Point2Pos(po) = Route2Point2Pos(\{r \mapsto{} po\})$}{true}{}
+		\Guard{grd5}{false}{$Point2Lock(po) = Unlock$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Point2Lock \bcmeq{} \{po \mapsto{} Lock\} \ovl{} Point2Lock$}{true}{}
+	}
+}
+\EVT{Route\_Reserve}{true}{ordinary}{Route\_Reserve}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Cel$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2Path)$}{false}{}
+		\Guard{grd4}{false}{$PathConflict[Route2InitPath[\{r\}]] \binter{} ran(Route2Path)=\emptyset{}$}{false}{}
+		\Guard{grd5}{false}{$Block2Route\converse{}[\{r\}] = Path2Block[\{Route2InitPath(r)\}]$}{false}{}
+		\Guard{grd6}{false}{$\forall{}po\qdot{}(po \in{} (Path2Block[Route2InitPath[\{r\}]] \binter{} POINT)) \limp{} (Point2Pos(po) = Route2Point2Pos(\{r \mapsto{} po\}))$}{true}{}
+		\Guard{grd7}{false}{$\forall{}po\qdot{}(po \in{} (Path2Block[Route2InitPath[\{r\}]] \binter{} POINT)) \limp{} (Point2Lock(po) = Lock)$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path \bcmeq{} Route2Path \bunion{} \{r\mapsto{}Route2InitPath(r)\} $}{false}{}
+	}
+}
+\EVT{Train\_Enter}{true}{ordinary}{Train\_Enter}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2OccPath)$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Occ \bcmeq{} Route\_Occ \bunion{} \{r\}$}{false}{}
+		\Action{act2}{$Route2OccPath \bcmeq{} Route2OccPath \bunion{} \{r \mapsto{} NullPath\}$}{false}{}
+	}
+}
+\EVT{Train\_Head\_Move}{true}{ordinary}{Train\_Head\_Move}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{op}{false}{}
+		\Param{b}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd4}{false}{$b \in{} Path2Block[\{Route2Path(r)\}]$}{false}{}
+		\Guard{grd5}{false}{$r \in{} dom(Route2OccPath)$}{false}{}
+		\Guard{grd6}{false}{$op = Route2OccPath(r)$}{false}{}
+		\Guard{grd7}{false}{$b \notin{} Path2Block[\{op\}]$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2OccPath(r) \bcmeq{} PathIncrease(op)(b)$}{false}{}
+	}
+}
+\EVT{Train\_Rear\_Move}{true}{ordinary}{Train\_Rear\_Move}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{op}{false}{}
+		\Param{b}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2OccPath)$}{false}{}
+		\Guard{grd3}{false}{$op = Route2OccPath(r)$}{false}{}
+		\Guard{grd4}{false}{$b \in{} Path2Block[\{op\}]$}{false}{}
+		\Guard{grd5}{false}{$op \neq{} NullPath$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2OccPath(r) \bcmeq{} PathReduce(op)(b)$}{false}{}
+	}
+}
+\EVT{Point\_Unlock\_Release}{false}{ordinary}{}{\\Before Block$\_$Release}{
+	\ANY{
+		\Param{r}{true}{}
+		\Param{cp}{true}{}
+		\Param{sp}{true}{}
+		\Param{po}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{true}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd3}{false}{$cp = Route2Path(r)$}{true}{}
+		\Guard{grd4}{false}{$sp = PathReduce(cp)(po)$}{true}{}
+		\Guard{grd5}{false}{$r \in{} dom(Route2OccPath)$}{true}{}
+		\Guard{grd7}{false}{$po \in{} POINT$}{true}{}
+		\Guard{grd8}{false}{$po \notin{} Path2Block[\{Route2Path(r)\}]  $}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Point2Lock(po) \bcmeq{} Unlock$}{true}{}
+	}
+}
+\EVT{Block\_Release}{true}{ordinary}{Block\_Release}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{cp}{false}{}
+		\Param{sp}{false}{}
+		\Param{b}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$cp = Route2Path(r)$}{false}{}
+		\Guard{grd4}{false}{$cp \neq{} NullPath$}{false}{}
+		\Guard{grd5}{false}{$sp \in{} PathSub[\{cp\}]$}{false}{}
+		\Guard{grd6}{false}{$sp = PathReduce(cp)(b)$}{false}{}
+		\Guard{grd7}{false}{$r \in{} dom(Route2OccPath)$}{false}{}
+		\Guard{grd8}{false}{$b \notin{} Path2Block[\{Route2OccPath(r)\}]$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path(r) \bcmeq{} sp$}{false}{}
+	}
+}
+\EVT{Train\_Leave}{true}{ordinary}{Train\_Leave}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$Route2Path(r) = NullPath$}{false}{}
+		\Guard{grd4}{false}{$Block2Route\converse{}[\{r\}] = \emptyset{}$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Occ \bcmeq{} Route\_Occ \setminus{} \{r\}$}{false}{}
+	}
+}
+\EVT{Route\_Release}{true}{ordinary}{Route\_Release}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd2}{false}{$Route2Path(r) = NullPath$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path \bcmeq{} \{r\} \domsub{} Route2Path $}{false}{}
+		\Action{act2}{$Route\_Req \bcmeq{} Route\_Req \setminus{} \{r\}$}{false}{}
+		\Action{act3}{$Block2Route \bcmeq{} Block2Route \ransub{} \{r\}$}{false}{}
+		\Action{act4}{$Route2OccPath \bcmeq{} \{r\} \domsub{} Route2OccPath$}{false}{}
+	}
+}
+\EVT{ATS\_Cancel}{true}{ordinary}{ATS\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Cel \bcmeq{} Route\_Cel \bunion{} \{r\}$}{false}{}
+	}
+}
+\EVT{Point\_Unlock\_Cancel}{false}{ordinary}{}{\\Before Train$\_$Enter}{
+	\ANY{
+		\Param{r}{true}{}
+		\Param{po}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Cel$}{true}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Occ$}{true}{}
+		\Guard{grd3}{false}{$po \in{} Block2Route\converse{}[\{r\}] \binter{} POINT$}{true}{}
+		\Guard{grd4}{false}{$Point2Lock(po) = Lock$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Point2Lock \bcmeq{} \{po \mapsto{} Unlock\}\ovl{} Point2Lock$}{true}{}
+	}
+}
+\EVT{Block\_Cancel}{true}{ordinary}{Block\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Cel$}{false}{}
+		\Guard{grd2}{false}{$r \in{} ran(Block2Route)$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd4}{false}{$\forall{}po\qdot{}po \in{} Block2Route\converse{}[\{r\}] \binter{} POINT \limp{} Point2Lock(po) = Unlock$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Block2Route \bcmeq{} Block2Route \ransub{} \{r\}$}{false}{}
+	}
+}
+\EVT{Route\_Cancel}{true}{ordinary}{Route\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+		\Guard{grd2}{false}{$r \in{} Route\_Cel $}{false}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd4}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd5}{false}{$Block2Route\converse{}[\{r\}] = \emptyset{}$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Req \bcmeq{} Route\_Req \setminus{} \{r\}$}{false}{}
+		\Action{act2}{$Route\_Cel \bcmeq{} Route\_Cel \setminus{} \{r\}$}{false}{}
+		\Action{act3}{$Route2Path \bcmeq{} \{r\} \domsub{} Route2Path $}{false}{}
+	}
+}
+}
+\END
+\MultiHeader{MACHINE}{SR\_M3}
+\MACHINE{SR\_M3}{SR\_M2}{SR3\_Signal}{}
+\VARIABLES{
+	\Variable{Route\_Req}{}
+	\Variable{Route\_Cel}{}
+	\Variable{Route\_Occ}{}
+	\Variable{Route2Path}{}
+	\Variable{Block2Route}{}
+	\Variable{Route2OccPath}{}
+	\Variable{Point2Pos}{}
+	\Variable{Point2Lock}{}
+	\Variable{Route2Signal}{}
+}
+\INVARIANTS{
+	\Invariant{inv1}{false}{$Route2Signal \in{} ROUTE \tfun{} SIGNAL$}{}
+	\Invariant{inv2}{false}{$\forall{}r\qdot{}r \in{} dom(Route2OccPath) \land{} Route2OccPath(r) \neq{} NullPath \limp{} Route2Signal(r) = Red$}{}
+}
+\EVENTS{
+\INITIALISATION{false}{}{
+	\ACTIONS{false}{
+		\Action{act1}{$Route\_Req  \bcmeq{}  \emptyset{}$}{true}{}
+		\Action{act2}{$Route\_Cel  \bcmeq{}  \emptyset{}$}{true}{}
+		\Action{act3}{$Route\_Occ \bcmeq{} \emptyset{}$}{true}{}
+		\Action{act4}{$Route2Path \bcmeq{} \emptyset{}$}{true}{}
+		\Action{act5}{$Block2Route \bcmeq{} \emptyset{}$}{true}{}
+		\Action{act6}{$Route2OccPath \bcmeq{} \emptyset{}$}{true}{}
+		\Action{act7}{$Point2Pos \bcmeq{} Point2InitPos$}{true}{}
+		\Action{act8}{$Point2Lock \bcmeq{} POINT \cprod{} \{Unlock\}$}{true}{}
+		\Action{act9}{$Route2Signal \bcmeq{} ROUTE \cprod{} \{Red\}$}{true}{}
+	}
+}
+\EVT{ATS\_Request}{true}{ordinary}{ATS\_Request}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \notin{} Route\_Req$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Req \bcmeq{} Route\_Req \bunion{} \{r\}$}{false}{}
+	}
+}
+\EVT{Block\_Reserve}{true}{ordinary}{Block\_Reserve}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{p}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Cel$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2Path)$}{false}{}
+		\Guard{grd4}{false}{$p \in{} PATH$}{false}{}
+		\Guard{grd5}{false}{$p = Route2InitPath(r)$}{false}{}
+		\Guard{grd6}{false}{$Path2Block[\{p\}] \binter{} dom(Block2Route) = \emptyset{}$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Block2Route \bcmeq{} Block2Route \bunion{} (Path2Block[\{p\}] \cprod{} \{r\})$}{false}{}
+	}
+}
+\EVT{Point\_Switch}{true}{ordinary}{Point\_Switch}{}{
+	\ANY{
+		\Param{po}{false}{}
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \notin{} Route\_Cel$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$po \in{} Block2Route\converse{}[\{r\}] \binter{} POINT$}{false}{}
+		\Guard{grd4}{false}{$Point2Pos(po) \neq{} Route2Point2Pos(\{r \mapsto{} po\})$}{false}{}
+		\Guard{grd5}{false}{$Point2Lock(po) = Unlock$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Point2Pos(po) \bcmeq{} Route2Point2Pos(\{r \mapsto{} po\})$}{false}{}
+	}
+}
+\EVT{Point\_Lock}{true}{ordinary}{Point\_Lock}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{po}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \notin{} Route\_Cel$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$po \in{} Block2Route\converse{}[\{r\}] \binter{} POINT$}{false}{}
+		\Guard{grd4}{false}{$Point2Pos(po) = Route2Point2Pos(\{r \mapsto{} po\})$}{false}{}
+		\Guard{grd5}{false}{$Point2Lock(po) = Unlock$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Point2Lock \bcmeq{} \{po \mapsto{} Lock\} \ovl{} Point2Lock$}{false}{}
+	}
+}
+\EVT{Route\_Reserve}{true}{ordinary}{Route\_Reserve}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Cel$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2Path)$}{false}{}
+		\Guard{grd4}{false}{$PathConflict[Route2InitPath[\{r\}]] \binter{} ran(Route2Path)=\emptyset{}$}{false}{}
+		\Guard{grd5}{false}{$Block2Route\converse{}[\{r\}] = Path2Block[\{Route2InitPath(r)\}]$}{false}{}
+		\Guard{grd6}{false}{$\forall{}po\qdot{}(po \in{} (Path2Block[Route2InitPath[\{r\}]] \binter{} POINT)) \limp{} (Point2Pos(po) = Route2Point2Pos(\{r \mapsto{} po\}))$}{false}{}
+		\Guard{grd7}{false}{$\forall{}po\qdot{}(po \in{} (Path2Block[Route2InitPath[\{r\}]] \binter{} POINT)) \limp{} (Point2Lock(po) = Lock)$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path \bcmeq{} Route2Path \bunion{} \{r\mapsto{}Route2InitPath(r)\} $}{false}{}
+	}
+}
+\EVT{Signal\_Green\_Reserve}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd2}{false}{$r \in{} Route\_Req$}{true}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Cel$}{true}{}
+		\Guard{grd4}{false}{$Block2Route\converse{}[\{r\}] = Path2Block[\{Route2InitPath(r)\}]$}{true}{}
+		\Guard{grd5}{false}{$\forall{}po\qdot{}(po \in{} (Path2Block[Route2InitPath[\{r\}]] \binter{} POINT)) \limp{} (Point2Pos(po) = Route2Point2Pos(\{r \mapsto{} po\}))$}{true}{}
+		\Guard{grd6}{false}{$\forall{}po\qdot{}(po \in{} (Path2Block[Route2InitPath[\{r\}]] \binter{} POINT)) \limp{} (Point2Lock(po) = Lock)$}{true}{}
+		\Guard{grd7}{false}{$r \notin{} Route\_Occ$}{true}{}
+		\Guard{grd8}{false}{$r \notin{} dom(Route2OccPath)$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Signal \bcmeq{} \{r \mapsto{} Green\} \ovl{} Route2Signal$}{true}{}
+	}
+}
+\EVT{Train\_Enter}{true}{ordinary}{Train\_Enter}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} dom(Route2OccPath)$}{false}{}
+		\Guard{grd4}{false}{$Route2Signal(r) = Green$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Occ \bcmeq{} Route\_Occ \bunion{} \{r\}$}{false}{}
+		\Action{act2}{$Route2OccPath \bcmeq{} Route2OccPath \bunion{} \{r \mapsto{} NullPath\}$}{false}{}
+	}
+}
+\EVT{Signal\_Red\_Occupied}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Occ$}{true}{}
+		\Guard{grd3}{false}{$Route2Signal(r) = Green$}{true}{}
+		\Guard{grd4}{false}{$r \in{} dom(Route2OccPath)$}{true}{}
+		\Guard{grd5}{false}{$Route2OccPath(r) = NullPath$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Signal(r) \bcmeq{} Red$}{true}{}
+	}
+}
+\EVT{Train\_Head\_Move}{true}{ordinary}{Train\_Head\_Move}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{op}{false}{}
+		\Param{b}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd4}{false}{$b \in{} Path2Block[\{Route2Path(r)\}]$}{false}{}
+		\Guard{grd5}{false}{$r \in{} dom(Route2OccPath)$}{false}{}
+		\Guard{grd6}{false}{$op = Route2OccPath(r)$}{false}{}
+		\Guard{grd7}{false}{$b \notin{} Path2Block[\{op\}]$}{false}{}
+		\Guard{grd8}{false}{$Route2Signal(r) = Red$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2OccPath(r) \bcmeq{} PathIncrease(op)(b)$}{false}{}
+	}
+}
+\EVT{Train\_Rear\_Move}{true}{ordinary}{Train\_Rear\_Move}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{op}{false}{}
+		\Param{b}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2OccPath)$}{false}{}
+		\Guard{grd3}{false}{$op = Route2OccPath(r)$}{false}{}
+		\Guard{grd4}{false}{$b \in{} Path2Block[\{op\}]$}{false}{}
+		\Guard{grd5}{false}{$op \neq{} NullPath$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2OccPath(r) \bcmeq{} PathReduce(op)(b)$}{false}{}
+	}
+}
+\EVT{Point\_Unlock\_Release}{true}{ordinary}{Point\_Unlock\_Release}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{cp}{false}{}
+		\Param{sp}{false}{}
+		\Param{po}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$cp = Route2Path(r)$}{false}{}
+		\Guard{grd4}{false}{$sp = PathReduce(cp)(po)$}{false}{}
+		\Guard{grd5}{false}{$r \in{} dom(Route2OccPath)$}{false}{}
+		\Guard{grd7}{false}{$po \in{} POINT$}{false}{}
+		\Guard{grd8}{false}{$po \notin{} Path2Block[\{Route2Path(r)\}]  $}{false}{}
+		\Guard{grd9}{false}{$Route2Signal(r) = Red$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Point2Lock(po) \bcmeq{} Unlock$}{false}{}
+	}
+}
+\EVT{Block\_Release}{true}{ordinary}{Block\_Release}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{cp}{false}{}
+		\Param{sp}{false}{}
+		\Param{b}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$cp = Route2Path(r)$}{false}{}
+		\Guard{grd4}{false}{$cp \neq{} NullPath$}{false}{}
+		\Guard{grd5}{false}{$sp \in{} PathSub[\{cp\}]$}{false}{}
+		\Guard{grd6}{false}{$sp = PathReduce(cp)(b)$}{false}{}
+		\Guard{grd7}{false}{$r \in{} dom(Route2OccPath)$}{false}{}
+		\Guard{grd8}{false}{$b \notin{} Path2Block[\{Route2OccPath(r)\}]$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path(r) \bcmeq{} sp$}{false}{}
+	}
+}
+\EVT{Train\_Leave}{true}{ordinary}{Train\_Leave}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Occ$}{false}{}
+		\Guard{grd2}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd3}{false}{$Route2Path(r) = NullPath$}{false}{}
+		\Guard{grd4}{false}{$Block2Route\converse{}[\{r\}] = \emptyset{}$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Occ \bcmeq{} Route\_Occ \setminus{} \{r\}$}{false}{}
+	}
+}
+\EVT{Route\_Release}{true}{ordinary}{Route\_Release}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd2}{false}{$Route2Path(r) = NullPath$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Path \bcmeq{} \{r\} \domsub{} Route2Path $}{false}{}
+		\Action{act2}{$Route\_Req \bcmeq{} Route\_Req \setminus{} \{r\}$}{false}{}
+		\Action{act3}{$Block2Route \bcmeq{} Block2Route \ransub{} \{r\}$}{false}{}
+		\Action{act4}{$Route2OccPath \bcmeq{} \{r\} \domsub{} Route2OccPath$}{false}{}
+	}
+}
+\EVT{ATS\_Cancel}{true}{ordinary}{ATS\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Cel \bcmeq{} Route\_Cel \bunion{} \{r\}$}{false}{}
+	}
+}
+\EVT{Signal\_Red\_Cancel}{false}{ordinary}{}{}{
+	\ANY{
+		\Param{r}{true}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Cel$}{true}{}
+		\Guard{grd2}{false}{$Route2Signal(r) = Green$}{true}{}
+		\Guard{grd3}{false}{$r \in{} dom(Route2Path)$}{true}{}
+		\Guard{grd4}{false}{$r \notin{} Route\_Occ$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route2Signal \bcmeq{} \{r \mapsto{} Red\} \ovl{} Route2Signal$}{true}{}
+	}
+}
+\EVT{Point\_Unlock\_Cancel}{true}{ordinary}{Point\_Unlock\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+		\Param{po}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Cel$}{false}{}
+		\Guard{grd2}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd3}{false}{$po \in{} Block2Route\converse{}[\{r\}] \binter{} POINT$}{false}{}
+		\Guard{grd4}{false}{$Point2Lock(po) = Lock$}{false}{}
+		\Guard{grd5}{false}{$Route2Signal(r) = Red$}{true}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Point2Lock \bcmeq{} \{po \mapsto{} Unlock\}\ovl{} Point2Lock$}{false}{}
+	}
+}
+\EVT{Block\_Cancel}{true}{ordinary}{Block\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Cel$}{false}{}
+		\Guard{grd2}{false}{$r \in{} ran(Block2Route)$}{false}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd4}{false}{$\forall{}po\qdot{}po \in{} Block2Route\converse{}[\{r\}] \binter{} POINT \limp{} Point2Lock(po) = Unlock$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Block2Route \bcmeq{} Block2Route \ransub{} \{r\}$}{false}{}
+	}
+}
+\EVT{Route\_Cancel}{true}{ordinary}{Route\_Cancel}{}{
+	\ANY{
+		\Param{r}{false}{}
+	}
+	\GUARDS{true}{
+		\Guard{grd1}{false}{$r \in{} Route\_Req$}{false}{}
+		\Guard{grd2}{false}{$r \in{} Route\_Cel $}{false}{}
+		\Guard{grd3}{false}{$r \notin{} Route\_Occ$}{false}{}
+		\Guard{grd4}{false}{$r \in{} dom(Route2Path)$}{false}{}
+		\Guard{grd5}{false}{$Block2Route\converse{}[\{r\}] = \emptyset{}$}{false}{}
+	}
+	\ACTIONS{true}{
+		\Action{act1}{$Route\_Req \bcmeq{} Route\_Req \setminus{} \{r\}$}{false}{}
+		\Action{act2}{$Route\_Cel \bcmeq{} Route\_Cel \setminus{} \{r\}$}{false}{}
+		\Action{act3}{$Route2Path \bcmeq{} \{r\} \domsub{} Route2Path $}{false}{}
+	}
+}
+}
+\END
+\end{document}
